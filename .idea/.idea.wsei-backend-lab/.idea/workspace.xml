@@ -4,45 +4,70 @@
     <projectFile profileName="http">WebApi/WebApi.csproj</projectFile>
     <projectFile profileName="https">WebApi/WebApi.csproj</projectFile>
   </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="201b6396-1749-4ce5-87de-a051f5bfe934" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/CoreApp/Models/Student.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.wsei-backend-lab/.idea/projectSettingsUpdater.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.wsei-backend-lab/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CoreApp/Class1.cs" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/CoreApp/Models/StudentGroup.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CoreApp/Models/StudyField.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CoreApp/Models/StudyYear.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CoreApp/Models/StudyYearField.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CoreApp/Repositories/IGenericRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Infrastucture/Repository/MemoryStudentRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.wsei-backend-lab/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.wsei-backend-lab/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CoreApp/Models/Student.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CoreApp/Models/Student.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastucture/Class1.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastucture/Infrastucture.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastucture/Infrastucture.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CopilotPersistence">
+    <persistenceIdMap>
+      <entry key="_C:/Users/matmi/RiderProjects/wsei-backend-lab" value="3AICNtnPBr8Fg7O7gkX6LgZtvDe" />
+    </persistenceIdMap>
+  </component>
+  <component name="CopilotUserSelectedModel">
+    <selectedModels>
+      <entry key="chat-panel" value="GPT-5 mini" />
+      <entry key="agent-panel" value="GPT-5 mini" />
+      <entry key="edit-panel" value="GPT-5 mini" />
+    </selectedModels>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Stalkisiek"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {}
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Stalkisiek/wsei-backend-lab.git&quot;,
+    &quot;accountId&quot;: &quot;d1b66894-612d-48f2-8657-c29bedbf3ac3&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Stalkisiek/wsei-backend-lab.git",
-    "accountId": "d1b66894-612d-48f2-8657-c29bedbf3ac3"
-  }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/CoreApp/Models/Student.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CoreApp/Models/StudentGroup.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CoreApp/Models/StudyField.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CoreApp/Models/StudyYearField.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CoreApp/Repositories/IGenericRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastucture/Repository/MemoryStudentRepository.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="AISelfReview" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="3AICNtnPBr8Fg7O7gkX6LgZtvDe" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -51,21 +76,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.WebApi: http">
     <configuration name="WebApi: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/WebApi/WebApi.csproj" />
@@ -107,16 +133,29 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1772270661674</updated>
-      <workItem from="1772270663101" duration="510000" />
+      <workItem from="1772270663101" duration="1835000" />
+      <workItem from="1772272784586" duration="560000" />
     </task>
+    <task id="LOCAL-00001" summary="Innitial commit v3 (trying to fix random included projects)">
+      <option name="closed" value="true" />
+      <created>1772271221091</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1772271221091</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Innitial commit v3 (trying to fix random included projects)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Innitial commit v3 (trying to fix random included projects)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
