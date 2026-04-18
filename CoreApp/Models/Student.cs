@@ -1,11 +1,12 @@
 ﻿namespace CoreApp.Models;
 
-public class Student
+public class Student : Person
 {
-    public int Id { get; set; }
-    public string Name { get; set; }
-    public string Surname { get; set; }
-    public DateOnly BirthDate { get; set; }
-    public string Email { get; set; }
-    public List<StudyYearField> StudyYearFields { get; set; }
+    public Guid StudentId { get; set; }
+    public int YearOfStudy { get; set; }
+    public AcademicYear? AcademicYear {get;set;}
+    public DegreeProgram? DegreeProgram {get;set;}
+    public StudentStatus Status { get; set; }
+    public List<Grade>  Grades { get; set; }
+    public string ProgramName { get; set; } = string.Empty;
 }

@@ -1,5 +1,7 @@
-namespace WebApi;
+using Infrastucture.Repository;
+using AutoMapper;
 
+namespace WebApi;
 public class Program
 {
     public static void Main(string[] args)
@@ -12,6 +14,8 @@ public class Program
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
         builder.Services.AddOpenApi();
 
+        builder.Services.AddAutoMapper(cfg => cfg.AddProfile<MappingProfile>());
+        
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.

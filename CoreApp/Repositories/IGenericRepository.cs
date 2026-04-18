@@ -1,10 +1,25 @@
-﻿namespace CoreApp.Repositories;
+﻿using CoreApp.Models;
 
-public interface IGenericRepository<T> where T : class
+namespace CoreApp.Repositories;
+
+public interface IGenericRepositoryAsync<T> where T : EntityBase
 {
-    Task<T?> AddAsync(T entity);
-    Task<T?> GetByIdAsync(int id);
-    Task<IEnumerable<T>> GetAllAsync();
-    Task DeleteAsync(int id);
-    Task<T?> UpdateAsync(T entity);
+    Task<T?> FindByIdAsync(Guid id);
+    Task<IEnumerable<T>> FindAllAsync();
+    Task<PagedResult<T>> FindPagedAsync(int page, int pageSize);
+    Task<T> AddAsync(T entity);
+    Task<T> UpdateAsync(T entity);
+    Task RemoveByIdAsync(Guid id);
+}
+
+public record PagedResult<T>(
+    List<T> Items,
+    int TotalCount,
+    int Page,
+    int PageSize
+)
+{
+    public int TotalPages => (int)Math.Ceiling((double)TotalCount / PageSize);
+    public bool HasNext => Page < TotalPages;
+    public bool HasPrevious => Page > 1;
 }

@@ -9,16 +9,44 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="201b6396-1749-4ce5-87de-a051f5bfe934" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/CoreApp/Models/StudentGroup.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CoreApp/Models/StudyField.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CoreApp/Models/StudyYear.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CoreApp/Models/StudyYearField.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CoreApp/Repositories/IGenericRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastucture/Repository/MemoryStudentRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.wsei-backend-lab/.idea/copilotDiffState.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CoreApp/Dto/LecturerDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CoreApp/Dto/PersonDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CoreApp/Dto/StudentDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CoreApp/Models/AcademicYear.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CoreApp/Models/CompletionType.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CoreApp/Models/Course.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CoreApp/Models/DegreeProgram.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CoreApp/Models/DegreeType.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CoreApp/Models/EntityBase.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CoreApp/Models/Grade.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CoreApp/Models/GradeExtensions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CoreApp/Models/GradeType.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CoreApp/Models/Lecturer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CoreApp/Models/Person.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CoreApp/Models/Semester.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CoreApp/Models/StudentStatus.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CoreApp/Repositories/ICourseRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CoreApp/Repositories/IDegreeProgramRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CoreApp/Repositories/IGradeRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CoreApp/Repositories/ILecturerRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CoreApp/Repositories/IStudentRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Infrastucture/Memory/InMemoryStudentRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Infrastucture/Memory/MemoryGenericRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Infrastucture/Repository/MappingProfile.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.wsei-backend-lab/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.wsei-backend-lab/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CoreApp/Models/Student.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CoreApp/Models/Student.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastucture/Class1.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CoreApp/Models/StudentGroup.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CoreApp/Models/StudyField.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CoreApp/Models/StudyYear.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CoreApp/Models/StudyYearField.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CoreApp/Repositories/IGenericRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CoreApp/Repositories/IGenericRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Infrastucture/Infrastucture.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastucture/Infrastucture.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastucture/Repository/MemoryStudentRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApi/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApi/WebApi.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WebApi/WebApi.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wsei-backend-lab.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/wsei-backend-lab.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wsei-backend-lab.sln" beforeDir="false" afterPath="$PROJECT_DIR$/wsei-backend-lab.sln" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,12 +78,30 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/CoreApp/Dto/LecturerDto.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CoreApp/Dto/PersonDto.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CoreApp/Dto/StudentDto.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CoreApp/Models/AcademicYear.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CoreApp/Models/CompletionType.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CoreApp/Models/Course.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CoreApp/Models/DegreeProgram.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CoreApp/Models/DegreeType.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CoreApp/Models/EntityBase.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CoreApp/Models/Grade.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CoreApp/Models/GradeExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CoreApp/Models/GradeType.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CoreApp/Models/Lecturer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CoreApp/Models/Person.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CoreApp/Models/Semester.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Models/Student.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/CoreApp/Models/StudentGroup.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/CoreApp/Models/StudyField.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/CoreApp/Models/StudyYearField.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CoreApp/Models/StudentStatus.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CoreApp/Repositories/ICourseRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Repositories/IGenericRepository.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Infrastucture/Repository/MemoryStudentRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CoreApp/Repositories/IGradeRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastucture/Memory/InMemoryStudentRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastucture/Memory/MemoryGenericRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastucture/Repository/MappingProfile.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/UnitTest/UnitTest1.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="McpProjectServerCommands">
     <commands />
@@ -76,22 +122,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Launch Settings Profile.WebApi: http">
     <configuration name="WebApi: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/WebApi/WebApi.csproj" />
@@ -135,6 +184,8 @@
       <updated>1772270661674</updated>
       <workItem from="1772270663101" duration="1835000" />
       <workItem from="1772272784586" duration="560000" />
+      <workItem from="1776498403006" duration="3215000" />
+      <workItem from="1776501670209" duration="1394000" />
     </task>
     <task id="LOCAL-00001" summary="Innitial commit v3 (trying to fix random included projects)">
       <option name="closed" value="true" />
