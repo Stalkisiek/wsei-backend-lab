@@ -13,5 +13,9 @@ public interface IStudentService
     Task<StudentDetailDto> CreateStudentAsync(StudentCreateDto dto);
     Task<StudentDetailDto> UpdateStudentAsync(Guid id, StudentUpdateDto dto);
     Task<StudentDetailDto> UpdateStudentStatusAsync(Guid id, StudentStatus newStatus);
+
+    Task<Student> AddStudent(StudentCreateDto dto);
+    Task<Student> UpdateStudent(Guid id, StudentUpdateDto dto);
+    Task<Student?> GetStudentById(Guid id);
 }
 

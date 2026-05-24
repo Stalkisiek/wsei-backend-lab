@@ -4,3 +4,39 @@ GET {{WebApi_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
+
+GET {{WebApi_HostAddress}}/api/students
+Accept: application/json
+
+###
+GET {{WebApi_HostAddress}}/api/students/{{studentId}}
+Accept: application/json
+
+###
+POST {{WebApi_HostAddress}}/api/students
+Content-Type: application/json
+
+{
+  "studentId": "",
+  "firstName": "Adam",
+  "lastName": "Nowak",
+  "email": "adam@wsei.edu.pl",
+  "programCode": "Informatyka",
+  "yearOfStudy": 1,
+  "enrollmentYearFrom": 2024
+}
+
+###
+
+PUT {{WebApi_HostAddress}}/api/students/{{studentId}}
+Content-Type: application/json
+
+{
+  "firstName": "Adam",
+  "lastName": "Nowak",
+  "email": "adam.updated@wsei.edu.pl",
+  "programCode": "Informatyka",
+  "yearOfStudy": 2,
+  "status": 0
+}
+

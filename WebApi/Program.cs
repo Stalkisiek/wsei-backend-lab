@@ -1,5 +1,6 @@
 using Infrastucture.Repository;
 using AutoMapper;
+using CoreApp.Module;
 
 namespace WebApi;
 public class Program
@@ -17,8 +18,12 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
-        builder.Services.AddAutoMapper(cfg => cfg.AddProfile<MappingProfile>());
-
+        builder.Services.AddAutoMapper(cfg =>
+        {
+            cfg.AddProfile<Infrastucture.Repository.MappingProfile>();
+            cfg.AddProfile<CoreApp.Mapper.StudentsMappingProfile>();
+        });
+        builder.Services.AddStudentsModule(builder.Configuration);
         builder.Services.AddSingleton<CoreApp.Repositories.IStudentRepository, Infrastucture.Memory.MemoryStudentRepository>();
         builder.Services.AddSingleton<CoreApp.Repositories.ILecturerRepository, Infrastucture.Memory.MemoryLecturerRepository>();
         builder.Services.AddSingleton<CoreApp.Repositories.IGradeRepository, Infrastucture.Memory.MemoryGradeRepository>();

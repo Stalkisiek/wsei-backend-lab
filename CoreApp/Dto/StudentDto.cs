@@ -9,19 +9,7 @@ public sealed record StudentSummaryDto : PersonDto
     public int YearOfStudy { get; init; }
     public StudentStatus Status { get; init; }
 
-    public static StudentSummaryDto FromEntity(Student student)
-    {
-        return new StudentSummaryDto()
-        {
-            StudentId = student.StudentId.ToString(),
-            FirstName = student.FirstName,
-            LastName = student.LastName,
-            Email = student.Email,
-            ProgramName = student.ProgramName,
-            YearOfStudy = student.YearOfStudy,
-            Status = student.Status
-        };
-    }
+    
 }
 
 public sealed record StudentDetailDto : PersonDto
@@ -36,24 +24,7 @@ public sealed record StudentDetailDto : PersonDto
     public int TotalEctsEarned { get; init; }
     public bool IsEligibleForDiploma { get; init; }
 
-    public static StudentDetailDto FromEntity(Student student)
-    {
-        return new StudentDetailDto()
-        {
-            StudentId = student.StudentId.ToString(),
-            FirstName = student.FirstName,
-            LastName = student.LastName,
-            Email = student.Email,
-            ProgramCode = student.ProgramName,
-            ProgramName = student.ProgramName,
-            EnrollmentYear = student.EnrollmentYear,
-            YearOfStudy = student.YearOfStudy,
-            Status = student.Status,
-            GradePointAverage = 0,
-            TotalEctsEarned = 0,
-            IsEligibleForDiploma = false
-        };
-    }
+    
 }
 
 public sealed record StudentCreateDto : PersonCreateDto
@@ -63,19 +34,7 @@ public sealed record StudentCreateDto : PersonCreateDto
     public string ProgramCode { get; init; } = string.Empty;
     public int EnrollmentYearFrom { get; init; }
 
-    public static Student ToEntity(StudentCreateDto dto)
-    {
-        return new Student
-        {
-            StudentId = Guid.Parse(dto.StudentId),
-            FirstName = dto.FirstName,
-            LastName = dto.LastName,
-            Email = dto.Email,
-            YearOfStudy = dto.YearOfStudy,
-            ProgramName = dto.ProgramCode,
-            Status = StudentStatus.Active
-        };
-    }
+    
 }
 
 public sealed record StudentUpdateDto : PersonDto

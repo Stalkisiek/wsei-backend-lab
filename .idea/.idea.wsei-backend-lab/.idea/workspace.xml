@@ -9,22 +9,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="201b6396-1749-4ce5-87de-a051f5bfe934" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/CoreApp/Repositories/IUniversityUnitOfWork.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CoreApp/Services/IStudentService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastucture/Memory/MemoryCourseRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastucture/Memory/MemoryGradeRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastucture/Memory/MemoryLecturerRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastucture/Memory/MemoryStudentRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastucture/Repository/MemoryUniversityUnitOfWork.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastucture/Services/MemoryStudentService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UnitTest/DtoMappingTests.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApi/Controllers/StudentsController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.wsei-backend-lab/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.wsei-backend-lab/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CoreApp/Mapper/StudentsMappingProfile.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CoreApp/Module/StudentModule.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CoreApp/Validators/StudentCreateDtoValidator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CoreApp/Validators/StudentUpdateDtoValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CoreApp/CoreApp.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/CoreApp/CoreApp.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CoreApp/Dto/StudentDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CoreApp/Dto/StudentDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CoreApp/Models/Student.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CoreApp/Models/Student.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastucture/Repository/MappingProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastucture/Repository/MappingProfile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CoreApp/Services/IStudentService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CoreApp/Services/IStudentService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastucture/Services/MemoryStudentService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastucture/Services/MemoryStudentService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApi/Controllers/StudentsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApi/Controllers/StudentsController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApi/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApi/WebApi.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WebApi/WebApi.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApi/WebApi.http" beforeDir="false" afterPath="$PROJECT_DIR$/WebApi/WebApi.http" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +38,9 @@
       <entry key="edit-panel" value="GPT-5 mini" />
     </selectedModels>
   </component>
+  <component name="DpaMonitoringSettings">
+    <option name="firstShow" value="false" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -59,6 +57,7 @@
     <setting file="file://$PROJECT_DIR$/CoreApp/Dto/LecturerDto.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Dto/PersonDto.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Dto/StudentDto.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CoreApp/Mapper/StudentsMappingProfile.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Models/AcademicYear.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Models/CompletionType.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Models/Course.cs" root0="FORCE_HIGHLIGHTING" />
@@ -73,10 +72,12 @@
     <setting file="file://$PROJECT_DIR$/CoreApp/Models/Semester.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Models/Student.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Models/StudentStatus.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CoreApp/Module/StudentModule.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Repositories/ICourseRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Repositories/IGenericRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Repositories/IGradeRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Services/IStudentService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CoreApp/Validators/StudentCreateDtoValidator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastucture/Memory/InMemoryStudentRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastucture/Memory/MemoryCourseRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastucture/Memory/MemoryGenericRepository.cs" root0="FORCE_HIGHLIGHTING" />
@@ -170,7 +171,7 @@
       <workItem from="1772272784586" duration="560000" />
       <workItem from="1776498403006" duration="3215000" />
       <workItem from="1776501670209" duration="1394000" />
-      <workItem from="1779620349883" duration="2681000" />
+      <workItem from="1779620349883" duration="6837000" />
     </task>
     <task id="LOCAL-00001" summary="Innitial commit v3 (trying to fix random included projects)">
       <option name="closed" value="true" />
@@ -180,7 +181,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772271221091</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="lab 3">
+      <option name="closed" value="true" />
+      <created>1779623086588</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1779623086588</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -202,7 +211,8 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Innitial commit v3 (trying to fix random included projects)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Innitial commit v3 (trying to fix random included projects)" />
+    <MESSAGE value="lab 3" />
+    <option name="LAST_COMMIT_MESSAGE" value="lab 3" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
