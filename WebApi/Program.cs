@@ -27,12 +27,16 @@ public class Program
         builder.Services.AddSingleton<CoreApp.Repositories.IStudentRepository, Infrastucture.Memory.MemoryStudentRepository>();
         builder.Services.AddSingleton<CoreApp.Repositories.ILecturerRepository, Infrastucture.Memory.MemoryLecturerRepository>();
         builder.Services.AddSingleton<CoreApp.Repositories.IGradeRepository, Infrastucture.Memory.MemoryGradeRepository>();
+        builder.Services.AddSingleton<CoreApp.Repositories.ICourseRepository, Infrastucture.Memory.MemoryCourseRepository>();
+        builder.Services.AddSingleton<CoreApp.Repositories.IAcademicYearRepository, Infrastucture.Memory.MemoryAcademicYearRepository>();
         builder.Services.AddSingleton<CoreApp.Repositories.IUniversityUnitOfWork, Infrastucture.Repository.MemoryUniversityUnitOfWork>(sp =>
         {
             var students = sp.GetRequiredService<CoreApp.Repositories.IStudentRepository>();
             var lecturers = sp.GetRequiredService<CoreApp.Repositories.ILecturerRepository>();
             var grades = sp.GetRequiredService<CoreApp.Repositories.IGradeRepository>();
-            return new Infrastucture.Repository.MemoryUniversityUnitOfWork(students, lecturers, grades);
+            var courses = sp.GetRequiredService<CoreApp.Repositories.ICourseRepository>();
+            var years = sp.GetRequiredService<CoreApp.Repositories.IAcademicYearRepository>();
+            return new Infrastucture.Repository.MemoryUniversityUnitOfWork(students, lecturers, grades, courses, years);
         });
         builder.Services.AddSingleton<CoreApp.Services.IStudentService, Infrastucture.Services.MemoryStudentService>();
 
@@ -49,6 +53,8 @@ public class Program
         app.UseHttpsRedirection();
 
         app.UseAuthorization();
+
+        app.UseMiddleware<WebApi.Middleware.ProblemDetailsExceptionHandler>();
 
         app.MapControllers();
 

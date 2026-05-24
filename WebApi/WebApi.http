@@ -40,3 +40,19 @@ Content-Type: application/json
   "status": 0
 }
 
+
+###
+
+POST {{WebApi_HostAddress}}/api/students/{{studentId}}/grades
+Content-Type: application/json
+
+{
+  "courseId": "00000000-0000-0000-0000-000000000000",
+  "gradeValue": 4,
+  "gradeType": 0,
+  "lecturerId": null,
+  "academicYearId": null,
+  "date": "2024-05-01T00:00:00Z"
+}
+
+

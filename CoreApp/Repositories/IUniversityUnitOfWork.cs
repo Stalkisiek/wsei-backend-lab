@@ -8,6 +8,8 @@ public interface IUniversityUnitOfWork : IAsyncDisposable
     IStudentRepository Students { get; }
     ILecturerRepository Lecturers { get; }
     IGradeRepository Grades { get; }
+    ICourseRepository Courses { get; }
+    IAcademicYearRepository AcademicYears { get; }
     Task<int> SaveChangesAsync();
     Task BeginTransactionAsync();
     Task CommitTransactionAsync();

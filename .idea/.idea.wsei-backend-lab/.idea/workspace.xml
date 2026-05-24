@@ -9,13 +9,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="201b6396-1749-4ce5-87de-a051f5bfe934" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/CoreApp/Mapper/StudentsMappingProfile.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CoreApp/Module/StudentModule.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CoreApp/Validators/StudentCreateDtoValidator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CoreApp/Validators/StudentUpdateDtoValidator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CoreApp/CoreApp.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/CoreApp/CoreApp.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CoreApp/Dto/StudentDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CoreApp/Dto/StudentDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CoreApp/Dto/CourseDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CoreApp/Dto/GradeDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CoreApp/Dto/GradeUpdateDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CoreApp/Exceptions/LecturerNotFoundException.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CoreApp/Repositories/IAcademicYearRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CoreApp/Validators/GradeDtoValidator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Infrastucture/Memory/MemoryAcademicYearRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebApi/Controllers/CoursesController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebApi/Controllers/LecturersController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebApi/Middleware/ProblemDetailsExceptionHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CoreApp/Repositories/IUniversityUnitOfWork.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CoreApp/Repositories/IUniversityUnitOfWork.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CoreApp/Services/IStudentService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CoreApp/Services/IStudentService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastucture/Memory/MemoryCourseRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastucture/Memory/MemoryCourseRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastucture/Memory/MemoryLecturerRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastucture/Memory/MemoryLecturerRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastucture/Repository/MemoryUniversityUnitOfWork.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastucture/Repository/MemoryUniversityUnitOfWork.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Infrastucture/Services/MemoryStudentService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastucture/Services/MemoryStudentService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApi/Controllers/StudentsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApi/Controllers/StudentsController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApi/Program.cs" afterDir="false" />
@@ -57,6 +65,7 @@
     <setting file="file://$PROJECT_DIR$/CoreApp/Dto/LecturerDto.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Dto/PersonDto.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Dto/StudentDto.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CoreApp/Exceptions/LecturerNotFoundException.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Mapper/StudentsMappingProfile.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Models/AcademicYear.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Models/CompletionType.cs" root0="FORCE_HIGHLIGHTING" />
@@ -73,10 +82,12 @@
     <setting file="file://$PROJECT_DIR$/CoreApp/Models/Student.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Models/StudentStatus.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Module/StudentModule.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CoreApp/Repositories/IAcademicYearRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Repositories/ICourseRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Repositories/IGenericRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Repositories/IGradeRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Services/IStudentService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CoreApp/Validators/GradeDtoValidator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Validators/StudentCreateDtoValidator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastucture/Memory/InMemoryStudentRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastucture/Memory/MemoryCourseRepository.cs" root0="FORCE_HIGHLIGHTING" />
@@ -86,6 +97,7 @@
     <setting file="file://$PROJECT_DIR$/Infrastucture/Services/MemoryStudentService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/UnitTest/UnitTest1.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WebApi/Controllers/StudentsController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/WebApi/Middleware/ProblemDetailsExceptionHandler.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="McpProjectServerCommands">
     <commands />
@@ -115,7 +127,6 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "node.js.detected.package.eslint": "true",
@@ -171,7 +182,7 @@
       <workItem from="1772272784586" duration="560000" />
       <workItem from="1776498403006" duration="3215000" />
       <workItem from="1776501670209" duration="1394000" />
-      <workItem from="1779620349883" duration="6837000" />
+      <workItem from="1779620349883" duration="11196000" />
     </task>
     <task id="LOCAL-00001" summary="Innitial commit v3 (trying to fix random included projects)">
       <option name="closed" value="true" />
@@ -189,7 +200,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779623086588</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="lab 4">
+      <option name="closed" value="true" />
+      <created>1779627293204</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1779627293204</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,7 +231,8 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Innitial commit v3 (trying to fix random included projects)" />
     <MESSAGE value="lab 3" />
-    <option name="LAST_COMMIT_MESSAGE" value="lab 3" />
+    <MESSAGE value="lab 4" />
+    <option name="LAST_COMMIT_MESSAGE" value="lab 4" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
