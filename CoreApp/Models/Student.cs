@@ -4,6 +4,7 @@ public class Student : Person
 {
     public Guid StudentId { get; set; }
     public int YearOfStudy { get; set; }
+    public string EnrollmentYear { get; set; } = string.Empty;
     public AcademicYear? AcademicYear {get;set;}
     public DegreeProgram? DegreeProgram {get;set;}
     public StudentStatus Status { get; set; }

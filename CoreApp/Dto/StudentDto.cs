@@ -35,6 +35,25 @@ public sealed record StudentDetailDto : PersonDto
     public double GradePointAverage { get; init; }
     public int TotalEctsEarned { get; init; }
     public bool IsEligibleForDiploma { get; init; }
+
+    public static StudentDetailDto FromEntity(Student student)
+    {
+        return new StudentDetailDto()
+        {
+            StudentId = student.StudentId.ToString(),
+            FirstName = student.FirstName,
+            LastName = student.LastName,
+            Email = student.Email,
+            ProgramCode = student.ProgramName,
+            ProgramName = student.ProgramName,
+            EnrollmentYear = student.EnrollmentYear,
+            YearOfStudy = student.YearOfStudy,
+            Status = student.Status,
+            GradePointAverage = 0,
+            TotalEctsEarned = 0,
+            IsEligibleForDiploma = false
+        };
+    }
 }
 
 public sealed record StudentCreateDto : PersonCreateDto
