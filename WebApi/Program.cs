@@ -1,4 +1,5 @@
 using Infrastucture.Repository;
+using Infrastucture;
 using AutoMapper;
 using CoreApp.Module;
 
@@ -24,21 +25,13 @@ public class Program
             cfg.AddProfile<CoreApp.Mapper.StudentsMappingProfile>();
         });
         builder.Services.AddStudentsModule(builder.Configuration);
-        builder.Services.AddSingleton<CoreApp.Repositories.IStudentRepository, Infrastucture.Memory.MemoryStudentRepository>();
-        builder.Services.AddSingleton<CoreApp.Repositories.ILecturerRepository, Infrastucture.Memory.MemoryLecturerRepository>();
-        builder.Services.AddSingleton<CoreApp.Repositories.IGradeRepository, Infrastucture.Memory.MemoryGradeRepository>();
-        builder.Services.AddSingleton<CoreApp.Repositories.ICourseRepository, Infrastucture.Memory.MemoryCourseRepository>();
-        builder.Services.AddSingleton<CoreApp.Repositories.IAcademicYearRepository, Infrastucture.Memory.MemoryAcademicYearRepository>();
-        builder.Services.AddSingleton<CoreApp.Repositories.IUniversityUnitOfWork, Infrastucture.Repository.MemoryUniversityUnitOfWork>(sp =>
-        {
-            var students = sp.GetRequiredService<CoreApp.Repositories.IStudentRepository>();
-            var lecturers = sp.GetRequiredService<CoreApp.Repositories.ILecturerRepository>();
-            var grades = sp.GetRequiredService<CoreApp.Repositories.IGradeRepository>();
-            var courses = sp.GetRequiredService<CoreApp.Repositories.ICourseRepository>();
-            var years = sp.GetRequiredService<CoreApp.Repositories.IAcademicYearRepository>();
-            return new Infrastucture.Repository.MemoryUniversityUnitOfWork(students, lecturers, grades, courses, years);
-        });
-        builder.Services.AddSingleton<CoreApp.Services.IStudentService, Infrastucture.Services.MemoryStudentService>();
+
+        // choose one of the modules below:
+        // EF-backed registrations (use SQLite connection string 'AppDb' if present in configuration)
+        builder.Services.AddUniversityEfModule(builder.Configuration);
+
+        // In-memory registrations (default for current lab)
+        // builder.Services.AddUniversityMemoryModule(builder.Configuration);
 
         var app = builder.Build();
 

@@ -9,25 +9,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="201b6396-1749-4ce5-87de-a051f5bfe934" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/CoreApp/Dto/CourseDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CoreApp/Dto/GradeDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CoreApp/Dto/GradeUpdateDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CoreApp/Exceptions/LecturerNotFoundException.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CoreApp/Repositories/IAcademicYearRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CoreApp/Validators/GradeDtoValidator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastucture/Memory/MemoryAcademicYearRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApi/Controllers/CoursesController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApi/Controllers/LecturersController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApi/Middleware/ProblemDetailsExceptionHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CoreApp/Repositories/IUniversityUnitOfWork.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CoreApp/Repositories/IUniversityUnitOfWork.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CoreApp/Services/IStudentService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CoreApp/Services/IStudentService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastucture/Memory/MemoryCourseRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastucture/Memory/MemoryCourseRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastucture/Memory/MemoryLecturerRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastucture/Memory/MemoryLecturerRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastucture/Repository/MemoryUniversityUnitOfWork.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastucture/Repository/MemoryUniversityUnitOfWork.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastucture/Services/MemoryStudentService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastucture/Services/MemoryStudentService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApi/Controllers/StudentsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApi/Controllers/StudentsController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CoreApp/Models/ISystemUser.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CoreApp/Services/StudentService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Infrastucture/EntityFramework/Context/AppDbContext.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Infrastucture/EntityFramework/Entities/AppIdentity.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Infrastucture/EntityFramework/Repositories/EfAcademicYearRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Infrastucture/EntityFramework/Repositories/EfCourseRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Infrastucture/EntityFramework/Repositories/EfGenericRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Infrastucture/EntityFramework/Repositories/EfGradeRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Infrastucture/EntityFramework/Repositories/EfLecturerRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Infrastucture/EntityFramework/Repositories/EfStudentRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Infrastucture/EntityFramework/UnitOfWork/EfUniversityUnitOfWork.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Infrastucture/InfrastructureModule.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.wsei-backend-lab/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.wsei-backend-lab/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastucture/Infrastucture.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastucture/Infrastucture.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApi/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApi/WebApi.http" beforeDir="false" afterPath="$PROJECT_DIR$/WebApi/WebApi.http" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApi/WebApi.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WebApi/WebApi.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApi/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebApi/appsettings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,8 +85,10 @@
     <setting file="file://$PROJECT_DIR$/CoreApp/Repositories/IGenericRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Repositories/IGradeRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Services/IStudentService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CoreApp/Services/StudentService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Validators/GradeDtoValidator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Validators/StudentCreateDtoValidator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastucture/InfrastructureModule.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastucture/Memory/InMemoryStudentRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastucture/Memory/MemoryCourseRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastucture/Memory/MemoryGenericRepository.cs" root0="FORCE_HIGHLIGHTING" />
@@ -182,7 +182,7 @@
       <workItem from="1772272784586" duration="560000" />
       <workItem from="1776498403006" duration="3215000" />
       <workItem from="1776501670209" duration="1394000" />
-      <workItem from="1779620349883" duration="11196000" />
+      <workItem from="1779620349883" duration="14004000" />
     </task>
     <task id="LOCAL-00001" summary="Innitial commit v3 (trying to fix random included projects)">
       <option name="closed" value="true" />
@@ -208,7 +208,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779627293204</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Lab 5">
+      <option name="closed" value="true" />
+      <created>1779633954242</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1779633954242</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -232,7 +240,8 @@
     <MESSAGE value="Innitial commit v3 (trying to fix random included projects)" />
     <MESSAGE value="lab 3" />
     <MESSAGE value="lab 4" />
-    <option name="LAST_COMMIT_MESSAGE" value="lab 4" />
+    <MESSAGE value="Lab 5" />
+    <option name="LAST_COMMIT_MESSAGE" value="Lab 5" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
