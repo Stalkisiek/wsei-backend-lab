@@ -22,5 +22,6 @@ public interface IStudentService
     Task<Student> AddStudent(StudentCreateDto dto);
     Task<Student> UpdateStudent(Guid id, StudentUpdateDto dto);
     Task<Student?> GetStudentById(Guid id);
+    Task<Guid?> ResolveStudentEntityIdByStudentIdAsync(string studentId);
 }
 

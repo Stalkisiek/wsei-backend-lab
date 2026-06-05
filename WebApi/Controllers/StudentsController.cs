@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 using CoreApp.Services;
 using CoreApp.Dto;
 using CoreApp.Models;
@@ -24,10 +23,21 @@ public class StudentsController : ControllerBase
         return Ok(result);
     }
 
-    [HttpGet("{id:guid}")]
-    public async Task<IActionResult> GetStudent(Guid id)
+    [HttpGet("id/{id:guid}")]
+    public async Task<IActionResult> GetStudentById(Guid id)
     {
         var dto = await _service.GetStudentByIdAsync(id);
+        if (dto == null) return NotFound();
+        return Ok(dto);
+    }
+
+    [HttpGet("student-id/{studentId}")]
+    public async Task<IActionResult> GetStudentByStudentId(string studentId)
+    {
+        var entityId = await _service.ResolveStudentEntityIdByStudentIdAsync(studentId);
+        if (!entityId.HasValue) return NotFound();
+
+        var dto = await _service.GetStudentByIdAsync(entityId.Value);
         if (dto == null) return NotFound();
         return Ok(dto);
     }
@@ -35,13 +45,20 @@ public class StudentsController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] StudentCreateDto dto)
     {
-        var entity = await _service.AddStudent(dto);
-        var result = await _service.GetStudentByIdAsync(entity.Id);
-        return CreatedAtAction(nameof(GetStudent), new { id = entity.Id }, result);
+        try
+        {
+            var entity = await _service.AddStudent(dto);
+            var result = await _service.GetStudentByIdAsync(entity.Id);
+            return CreatedAtAction(nameof(GetStudentById), new { id = entity.Id }, result);
+        }
+        catch (ArgumentException ex)
+        {
+            return Conflict(new { error = ex.Message });
+        }
     }
 
-    [HttpPut("{id:guid}")]
-    public async Task<IActionResult> UpdateStudent(Guid id, [FromBody] StudentUpdateDto dto)
+    [HttpPut("id/{id:guid}")]
+    public async Task<IActionResult> UpdateStudentById(Guid id, [FromBody] StudentUpdateDto dto)
     {
         // sprawdź czy student istnieje
         var existing = await _service.GetStudentByIdAsync(id);
@@ -53,6 +70,7 @@ public class StudentsController : ControllerBase
         // przygotuj odpowiedź jako StudentSummaryDto
         var summary = new StudentSummaryDto
         {
+            Id = updated.Id,
             FirstName = updated.FirstName,
             LastName = updated.LastName,
             Email = updated.Email,
@@ -65,25 +83,34 @@ public class StudentsController : ControllerBase
         return Ok(summary);
     }
 
-    [HttpPost("{id:guid}/grades")]
-    public async Task<IActionResult> AddGrade(Guid id, [FromBody] CoreApp.Dto.GradeDto dto)
+    [HttpPut("student-id/{studentId}")]
+    public async Task<IActionResult> UpdateStudentByStudentId(string studentId, [FromBody] StudentUpdateDto dto)
+    {
+        var entityId = await _service.ResolveStudentEntityIdByStudentIdAsync(studentId);
+        if (!entityId.HasValue) return NotFound();
+
+        return await UpdateStudentById(entityId.Value, dto);
+    }
+
+    [HttpPost("id/{id:guid}/grades")]
+    public async Task<IActionResult> AddGradeById(Guid id, [FromBody] GradeDto dto)
     {
         var existing = await _service.GetStudentById(id);
         if (existing == null) return NotFound();
         try
         {
             var created = await _service.AddGrade(id, dto);
-            var result = new CoreApp.Dto.GradeDto
+            var result = new GradeDto
             {
                 Id = created.Id,
-                CourseId = created.Course?.Id ?? Guid.Empty,
+                CourseId = created.Course.Id,
                 GradeValue = created.GradeValue.Value(),
                 GradeType = created.GradeType,
                 LecturerId = created.Lecturer?.Id,
                 AcademicYearId = created.AcademicYear?.Id,
                 Date = created.Date
             };
-            return CreatedAtAction(nameof(GetGrades), new { studentId = id }, result);
+            return CreatedAtAction(nameof(GetGradesById), new { id }, result);
         }
         catch (KeyNotFoundException)
         {
@@ -103,27 +130,45 @@ public class StudentsController : ControllerBase
         }
     }
 
-    [HttpGet("{studentId:guid}/grades")]
-    public async Task<IActionResult> GetGrades(Guid studentId)
+    [HttpPost("student-id/{studentId}/grades")]
+    public async Task<IActionResult> AddGradeByStudentId(string studentId, [FromBody] GradeDto dto)
     {
-        var student = await _service.GetById(studentId);
+        var entityId = await _service.ResolveStudentEntityIdByStudentIdAsync(studentId);
+        if (!entityId.HasValue) return NotFound();
+
+        return await AddGradeById(entityId.Value, dto);
+    }
+
+    [HttpGet("id/{id:guid}/grades")]
+    public async Task<IActionResult> GetGradesById(Guid id)
+    {
+        var student = await _service.GetById(id);
         if (student == null) return NotFound();
-        var grades = await _service.GetGradesAsync(studentId);
+        var grades = await _service.GetGradesAsync(id);
         return Ok(grades);
     }
 
-    [HttpPut("{studentId:guid}/grades/{gradeId:guid}")]
-    public async Task<IActionResult> UpdateGrade(Guid studentId, Guid gradeId, [FromBody] CoreApp.Dto.GradeUpdateDto dto)
+    [HttpGet("student-id/{studentId}/grades")]
+    public async Task<IActionResult> GetGradesByStudentId(string studentId)
     {
-        var student = await _service.GetById(studentId);
+        var entityId = await _service.ResolveStudentEntityIdByStudentIdAsync(studentId);
+        if (!entityId.HasValue) return NotFound();
+
+        return await GetGradesById(entityId.Value);
+    }
+
+    [HttpPut("id/{id:guid}/grades/{gradeId:guid}")]
+    public async Task<IActionResult> UpdateGradeById(Guid id, Guid gradeId, [FromBody] GradeUpdateDto dto)
+    {
+        var student = await _service.GetById(id);
         if (student == null) return NotFound();
         try
         {
-            var updated = await _service.UpdateGrade(studentId, gradeId, dto);
-            var result = new CoreApp.Dto.GradeDto
+            var updated = await _service.UpdateGrade(id, gradeId, dto);
+            var result = new GradeDto
             {
                   Id = updated.Id,
-                CourseId = updated.Course?.Id ?? Guid.Empty,
+                CourseId = updated.Course.Id,
                 GradeValue = updated.GradeValue.Value(),
                 GradeType = updated.GradeType,
                 LecturerId = updated.Lecturer?.Id,
@@ -144,6 +189,15 @@ public class StudentsController : ControllerBase
         {
             return Problem(detail: ex.Message);
         }
+    }
+
+    [HttpPut("student-id/{studentId}/grades/{gradeId:guid}")]
+    public async Task<IActionResult> UpdateGradeByStudentId(string studentId, Guid gradeId, [FromBody] GradeUpdateDto dto)
+    {
+        var entityId = await _service.ResolveStudentEntityIdByStudentIdAsync(studentId);
+        if (!entityId.HasValue) return NotFound();
+
+        return await UpdateGradeById(entityId.Value, gradeId, dto);
     }
 }
 

@@ -2,7 +2,7 @@
 
 public class Student : Person
 {
-    public Guid StudentId { get; set; }
+    public string StudentId { get; set; } = string.Empty;
     public int YearOfStudy { get; set; }
     public string EnrollmentYear { get; set; } = string.Empty;
     public AcademicYear? AcademicYear {get;set;}

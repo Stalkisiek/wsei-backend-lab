@@ -5,13 +5,13 @@ using AutoMapper;
 public class MappingProfile : Profile {
     public MappingProfile() {
         CreateMap<CoreApp.Models.Student, CoreApp.Dto.StudentSummaryDto>()
-            .ForMember(dest => dest.StudentId, opt => opt.MapFrom(src => src.StudentId.ToString()))
+            .ForMember(dest => dest.StudentId, opt => opt.MapFrom(src => src.StudentId))
             .ForMember(dest => dest.ProgramName, opt => opt.MapFrom(src => src.ProgramName))
             .ForMember(dest => dest.YearOfStudy, opt => opt.MapFrom(src => src.YearOfStudy))
             .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status));
 
         CreateMap<CoreApp.Models.Student, CoreApp.Dto.StudentDetailDto>()
-            .ForMember(dest => dest.StudentId, opt => opt.MapFrom(src => src.StudentId.ToString()))
+            .ForMember(dest => dest.StudentId, opt => opt.MapFrom(src => src.StudentId))
             .ForMember(dest => dest.ProgramCode, opt => opt.MapFrom(src => src.ProgramName)) 
             .ForMember(dest => dest.ProgramName, opt => opt.MapFrom(src => src.ProgramName))
             .ForMember(dest => dest.EnrollmentYear, opt => opt.MapFrom(src => src.EnrollmentYear.ToString()))
@@ -22,7 +22,7 @@ public class MappingProfile : Profile {
             .ForMember(dest => dest.IsEligibleForDiploma, opt => opt.Ignore()); 
 
         CreateMap<CoreApp.Dto.StudentCreateDto, CoreApp.Models.Student>()
-            .ForMember(dest => dest.StudentId, opt => opt.MapFrom(src => Guid.Parse(src.StudentId)))
+            .ForMember(dest => dest.StudentId, opt => opt.MapFrom(src => (src.StudentId ?? string.Empty).Trim()))
             .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName))
             .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName))
             .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))

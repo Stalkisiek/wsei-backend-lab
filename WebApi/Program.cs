@@ -1,12 +1,13 @@
-using Infrastucture.Repository;
 using Infrastucture;
-using AutoMapper;
 using CoreApp.Module;
+using Infrastucture.EntityFramework.Context;
+using Infrastucture.Repository;
+using WebApi.Middleware;
 
 namespace WebApi;
 public class Program
 {
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
 
@@ -21,7 +22,7 @@ public class Program
 
         builder.Services.AddAutoMapper(cfg =>
         {
-            cfg.AddProfile<Infrastucture.Repository.MappingProfile>();
+            cfg.AddProfile<MappingProfile>();
             cfg.AddProfile<CoreApp.Mapper.StudentsMappingProfile>();
         });
         builder.Services.AddStudentsModule(builder.Configuration);
@@ -35,6 +36,8 @@ public class Program
 
         var app = builder.Build();
 
+        await DatabaseSeeder.SeedAsync(app.Services);
+
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
@@ -47,7 +50,7 @@ public class Program
 
         app.UseAuthorization();
 
-        app.UseMiddleware<WebApi.Middleware.ProblemDetailsExceptionHandler>();
+        app.UseMiddleware<ProblemDetailsExceptionHandler>();
 
         app.MapControllers();
 
@@ -56,7 +59,7 @@ public class Program
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        app.MapGet("/weatherforecast", (HttpContext httpContext) =>
+        app.MapGet("/weatherforecast", () =>
             {
                 var forecast = Enumerable.Range(1, 5).Select(index =>
                         new WeatherForecast

@@ -15,7 +15,7 @@ public class MemoryStudentRepository : MemoryGenericRepository<Student>, IStuden
         var s1 = new Student
         {
             Id = id1,
-            StudentId = id1,
+            StudentId = "ALB-2024-0001",
             FirstName = "Adam",
             LastName = "Nowak",
             Email = "adam.nowak@example.com",
@@ -31,7 +31,7 @@ public class MemoryStudentRepository : MemoryGenericRepository<Student>, IStuden
         var s2 = new Student
         {
             Id = id2,
-            StudentId = id2,
+            StudentId = "ALB-2024-0002",
             FirstName = "Ewa",
             LastName = "Kowalska",
             Email = "ewa.kowalska@example.com",

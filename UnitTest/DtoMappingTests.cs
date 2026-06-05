@@ -22,7 +22,7 @@ public class DtoMappingTests
     {
         var student = new Student
         {
-            StudentId = Guid.NewGuid(),
+            StudentId = "ALB-2025-1234",
             FirstName = "Jan",
             LastName = "Kowalski",
             Email = "jan.k@example.com",
@@ -33,7 +33,7 @@ public class DtoMappingTests
         };
 
         var summary = _mapper.Map<StudentSummaryDto>(student);
-        Assert.Equal(student.StudentId.ToString(), summary.StudentId);
+        Assert.Equal(student.StudentId, summary.StudentId);
         Assert.Equal(student.FirstName, summary.FirstName);
         Assert.Equal(student.LastName, summary.LastName);
         Assert.Equal(student.Email, summary.Email);
@@ -42,7 +42,7 @@ public class DtoMappingTests
         Assert.Equal(student.Status, summary.Status);
 
         var detail = _mapper.Map<StudentDetailDto>(student);
-        Assert.Equal(student.StudentId.ToString(), detail.StudentId);
+        Assert.Equal(student.StudentId, detail.StudentId);
         Assert.Equal(student.ProgramName, detail.ProgramCode);
         Assert.Equal(student.ProgramName, detail.ProgramName);
         Assert.Equal(student.EnrollmentYear, detail.EnrollmentYear);
@@ -53,10 +53,10 @@ public class DtoMappingTests
     [Fact]
     public void StudentCreateDtoToStudentMappingTest()
     {
-        var guid = Guid.NewGuid();
+        var albumCode = "ALB-2026-0007";
         var dto = new StudentCreateDto
         {
-            StudentId = guid.ToString(),
+            StudentId = albumCode,
             FirstName = "Anna",
             LastName = "Nowak",
             Email = "anna.nowak@example.com",
@@ -65,7 +65,7 @@ public class DtoMappingTests
         };
 
         var entity = _mapper.Map<Student>(dto);
-        Assert.Equal(guid, entity.StudentId);
+        Assert.Equal(albumCode, entity.StudentId);
         Assert.Equal(dto.FirstName, entity.FirstName);
         Assert.Equal(dto.LastName, entity.LastName);
         Assert.Equal(dto.Email, entity.Email);

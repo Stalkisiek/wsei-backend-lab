@@ -4,6 +4,7 @@ namespace CoreApp.Dto;
 
 public sealed record StudentSummaryDto : PersonDto
 {
+    public Guid Id { get; init; }
     public string StudentId { get; init; } = string.Empty;
     public string ProgramName { get; init; } = string.Empty;
     public int YearOfStudy { get; init; }
@@ -14,6 +15,7 @@ public sealed record StudentSummaryDto : PersonDto
 
 public sealed record StudentDetailDto : PersonDto
 {
+    public Guid Id { get; init; }
     public string StudentId { get; init; } = string.Empty;
     public string ProgramCode { get; init; } = string.Empty;
     public string ProgramName { get; init; } = string.Empty;
@@ -29,7 +31,7 @@ public sealed record StudentDetailDto : PersonDto
 
 public sealed record StudentCreateDto : PersonCreateDto
 {
-    public string StudentId { get; init; } = string.Empty;
+    public string? StudentId { get; init; }
     public int YearOfStudy { get; init; } = 1;
     public string ProgramCode { get; init; } = string.Empty;
     public int EnrollmentYearFrom { get; init; }

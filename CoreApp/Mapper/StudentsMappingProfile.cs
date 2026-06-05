@@ -9,17 +9,17 @@ public class StudentsMappingProfile : Profile
     public StudentsMappingProfile()
     {
         CreateMap<Student, StudentSummaryDto>()
-            .ForMember(dest => dest.StudentId, opt => opt.MapFrom(src => src.StudentId.ToString()))
+            .ForMember(dest => dest.StudentId, opt => opt.MapFrom(src => src.StudentId))
             .ForMember(dest => dest.ProgramName, opt => opt.MapFrom(src => src.DegreeProgram != null ? src.DegreeProgram.Name : src.ProgramName));
 
         CreateMap<Student, StudentDetailDto>()
-            .ForMember(dest => dest.StudentId, opt => opt.MapFrom(src => src.StudentId.ToString()))
+            .ForMember(dest => dest.StudentId, opt => opt.MapFrom(src => src.StudentId))
             .ForMember(dest => dest.ProgramCode, opt => opt.MapFrom(src => src.ProgramName))
             .ForMember(dest => dest.ProgramName, opt => opt.MapFrom(src => src.DegreeProgram != null ? src.DegreeProgram.Name : src.ProgramName))
             .ForMember(dest => dest.EnrollmentYear, opt => opt.MapFrom(src => src.EnrollmentYear));
 
         CreateMap<StudentCreateDto, Student>()
-            .ForMember(dest => dest.StudentId, opt => opt.MapFrom(src => string.IsNullOrEmpty(src.StudentId) ? Guid.NewGuid() : Guid.Parse(src.StudentId)))
+            .ForMember(dest => dest.StudentId, opt => opt.MapFrom(src => (src.StudentId ?? string.Empty).Trim()))
             .ForMember(dest => dest.ProgramName, opt => opt.MapFrom(src => src.ProgramCode))
             .ForMember(dest => dest.Status, opt => opt.MapFrom(_ => StudentStatus.Active));
 

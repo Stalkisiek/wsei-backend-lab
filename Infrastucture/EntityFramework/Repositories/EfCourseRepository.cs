@@ -25,7 +25,7 @@ public class EfCourseRepository : EfGenericRepository<Course>, ICourseRepository
 
     public async Task<IEnumerable<Course>> FindByLecturerAsync(Guid lecturerId)
     {
-        return await _set.Where(c => c.Enrollments != null && c.Enrollments.Any(s => s.StudentId == lecturerId) == false).AsNoTracking().ToListAsync();
+        return await _set.Where(c => c.Enrollments != null && c.Enrollments.Any(s => s.Id == lecturerId) == false).AsNoTracking().ToListAsync();
     }
 
     public async Task<Course?> FindByCodeAsync(string code)

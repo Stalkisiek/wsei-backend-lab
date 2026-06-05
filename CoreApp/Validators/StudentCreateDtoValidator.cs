@@ -32,8 +32,8 @@ public class StudentCreateDtoValidator : AbstractValidator<StudentCreateDto>
             .MaximumLength(200).WithMessage("Kod programu jest za długi.");
 
         RuleFor(x => x.StudentId)
-            .Must(id => string.IsNullOrEmpty(id) || Guid.TryParse(id, out _))
-            .WithMessage("StudentId musi być poprawnym identyfikatorem GUID.");
+            .Must(id => string.IsNullOrWhiteSpace(id) || System.Text.RegularExpressions.Regex.IsMatch(id.Trim(), "^[A-Za-z0-9-]{4,20}$"))
+            .WithMessage("StudentId musi być kodem albumu (4-20 znaków, litery/cyfry/myślnik) lub zostać puste.");
 
         RuleFor(x => x.EnrollmentYearFrom)
             .GreaterThanOrEqualTo(1900).WithMessage("Rok rozpoczęcia musi być poprawny.")

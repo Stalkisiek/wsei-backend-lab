@@ -18,7 +18,7 @@ public class MemoryGenericRepositoryTest
     {
         var expected = new Student()
         {
-            StudentId = Guid.NewGuid(),
+            StudentId = "ALB-2026-0101",
             YearOfStudy = 2,
             ProgramName = "Informatyka",
             Status = StudentStatus.Active,
@@ -40,7 +40,7 @@ public class MemoryGenericRepositoryTest
         _repo = new MemoryGenericRepository<Student>();
         var students = Enumerable.Range(1, 7).Select(i => new Student
         {
-            StudentId = Guid.NewGuid(),
+            StudentId = $"ALB-2026-{i:0000}",
             ProgramName = $"Program{i}",
             YearOfStudy = i % 4 + 1,
             Status = StudentStatus.Active,

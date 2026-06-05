@@ -39,6 +39,16 @@ public class MemoryStudentService : CoreApp.Services.IStudentService
         return s as Student;
     }
 
+    public async Task<Guid?> ResolveStudentEntityIdByStudentIdAsync(string studentId)
+    {
+        if (string.IsNullOrWhiteSpace(studentId)) return null;
+        var code = studentId.Trim();
+
+        var all = await _unitOfWork.Students.FindAllAsync();
+        var byStudentId = all.FirstOrDefault(s => string.Equals(s.StudentId, code, StringComparison.OrdinalIgnoreCase));
+        return byStudentId?.Id;
+    }
+
     public async Task<StudentSummaryDto?> GetById(Guid id)
     {
         var s = await _unitOfWork.Students.FindByIdAsync(id);
@@ -49,6 +59,8 @@ public class MemoryStudentService : CoreApp.Services.IStudentService
     public async Task<StudentDetailDto> CreateStudentAsync(StudentCreateDto dto)
     {
         var entity = _mapper.Map<Student>(dto);
+        if (entity.Id == Guid.Empty) entity.Id = Guid.NewGuid();
+        entity.StudentId = await EnsureAlbumCodeAsync(entity.StudentId);
         var added = await _unitOfWork.Students.AddAsync(entity);
         await _unitOfWork.SaveChangesAsync();
         return _mapper.Map<StudentDetailDto>(added);
@@ -57,6 +69,8 @@ public class MemoryStudentService : CoreApp.Services.IStudentService
     public async Task<Student> AddStudent(StudentCreateDto dto)
     {
         var entity = _mapper.Map<Student>(dto);
+        if (entity.Id == Guid.Empty) entity.Id = Guid.NewGuid();
+        entity.StudentId = await EnsureAlbumCodeAsync(entity.StudentId);
         var added = await _unitOfWork.Students.AddAsync(entity);
         await _unitOfWork.SaveChangesAsync();
         return added;
@@ -188,6 +202,37 @@ public class MemoryStudentService : CoreApp.Services.IStudentService
             Date = g.Date
         }).ToList();
         return items;
+    }
+
+    private async Task<string> EnsureAlbumCodeAsync(string candidate)
+    {
+        var normalized = (candidate ?? string.Empty).Trim();
+        if (string.IsNullOrWhiteSpace(normalized))
+        {
+            return await GenerateUniqueAlbumCodeAsync();
+        }
+
+        var all = await _unitOfWork.Students.FindAllAsync();
+        var exists = all.Any(s => string.Equals(s.StudentId, normalized, StringComparison.OrdinalIgnoreCase));
+        if (exists)
+        {
+            throw new ArgumentException($"StudentId '{normalized}' already exists.");
+        }
+
+        return normalized;
+    }
+
+    private async Task<string> GenerateUniqueAlbumCodeAsync()
+    {
+        for (var attempt = 0; attempt < 10; attempt++)
+        {
+            var suffix = Guid.NewGuid().ToString("N")[..6].ToUpperInvariant();
+            var candidate = $"ALB-{DateTime.UtcNow:yyyy}-{suffix}";
+            var id = await ResolveStudentEntityIdByStudentIdAsync(candidate);
+            if (!id.HasValue) return candidate;
+        }
+
+        throw new InvalidOperationException("Unable to generate unique student album code.");
     }
 }
 

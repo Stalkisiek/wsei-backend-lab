@@ -1,18 +1,20 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Infrastucture.EntityFramework.Entities;
 using CoreApp.Models;
 using Microsoft.Extensions.Configuration;
-using System.IO;
 
 namespace Infrastucture.EntityFramework.Context;
 
 public class AppDbContext : IdentityDbContext<AppUser, AppRole, string>
 {
-    public DbSet<Student>? Students { get; set; }
-    public DbSet<Course>? Courses { get; set; }
+    public DbSet<Student> Students { get; set; }
+    public DbSet<Course> Courses { get; set; }
+    public DbSet<Lecturer> Lecturers { get; set; }
+    public DbSet<AcademicYear> AcademicYears { get; set; }
+    public DbSet<DegreeProgram> DegreePrograms { get; set; }
+    public DbSet<Grade> Grades { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -21,7 +23,7 @@ public class AppDbContext : IdentityDbContext<AppUser, AppRole, string>
             try
             {
                 var configPath = Path.Combine(AppContext.BaseDirectory, "appsettings.json");
-                var config = new Microsoft.Extensions.Configuration.ConfigurationBuilder()
+                var config = new ConfigurationBuilder()
                     .AddJsonFile(configPath, optional: true)
                     .Build();
                 var cs = config.GetConnectionString("AppDb");
@@ -59,6 +61,32 @@ public class AppDbContext : IdentityDbContext<AppUser, AppRole, string>
 
         builder.Entity<Student>(entity => { entity.HasKey(s => s.Id); });
         builder.Entity<Course>(entity => { entity.HasKey(c => c.Id); });
+        builder.Entity<Lecturer>(entity =>
+        {
+            entity.HasKey(l => l.Id);
+            entity.Property(l => l.Title).HasMaxLength(50);
+            entity.Property(l => l.Faculty).HasMaxLength(100);
+        });
+        builder.Entity<AcademicYear>(entity =>
+        {
+            entity.HasKey(y => y.Id);
+            entity.Property(y => y.Name).HasMaxLength(50);
+        });
+        builder.Entity<DegreeProgram>(entity =>
+        {
+            entity.HasKey(p => p.Id);
+            entity.Property(p => p.Code).HasMaxLength(20);
+            entity.Property(p => p.Name).HasMaxLength(100);
+            entity.Property(p => p.Faculty).HasMaxLength(100);
+        });
+        builder.Entity<Grade>(entity =>
+        {
+            entity.HasKey(g => g.Id);
+            entity.HasOne(g => g.Student).WithMany(s => s.Grades);
+            entity.HasOne(g => g.Course).WithMany();
+            entity.HasOne(g => g.Lecturer).WithMany();
+            entity.HasOne(g => g.AcademicYear).WithMany();
+        });
 
         var adminRoleId = "11111111-1111-1111-1111-111111111111";
         var user1Id = "22222222-2222-2222-2222-222222222222";
