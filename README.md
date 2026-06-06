@@ -2,6 +2,15 @@
 
 ## Projekt: Dziekanat
 
+### Uruchomienie
+
+```powershell
+cd "..\wsei-backend-lab"
+dotnet restore
+dotnet build
+dotnet run --project WebApi\WebApi.csproj
+```
+
 ### Autor
 - Mateusz Migdał
 
