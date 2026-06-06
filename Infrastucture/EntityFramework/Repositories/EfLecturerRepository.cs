@@ -42,7 +42,7 @@ public class EfLecturerRepository : EfGenericRepository<Lecturer>, ILecturerRepo
     {
         var course = await _context.Set<Course>()
             .Include(c => c.Enrollments)
-            .FirstOrDefaultAsync(c => c.Id == courseId && c.Lecturer != null && c.Lecturer.Id == lecturerId);
+            .FirstOrDefaultAsync(c => c.Id == courseId);
 
         return course?.Enrollments ?? new List<Student>();
     }

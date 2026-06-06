@@ -26,7 +26,7 @@ public class MemoryGenericRepositoryTest
             FirstName = "Ivan",
             LastName = "Ivanov",
             Pesel = null,
-            Email = "test@test.test"
+            Email = EmailAddress.From("test@test.test")
         };
         await _repo.AddAsync(expected);
         var actual = await _repo.FindByIdAsync(expected.Id);
@@ -48,7 +48,7 @@ public class MemoryGenericRepositoryTest
             FirstName = $"First{i}",
             LastName = $"Last{i}",
             Pesel = null,
-            Email = $"student{i}@example.com"
+            Email = EmailAddress.From($"student{i}@example.com")
         }).ToList();
         foreach (var s in students) await _repo.AddAsync(s);
         var all = (await _repo.FindAllAsync()).ToList();

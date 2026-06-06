@@ -5,6 +5,7 @@ using CoreApp.Repositories;
 using CoreApp.Authorization;
 using CoreApp.Services;
 using CoreApp.Dto;
+using CoreApp.Models;
 using FluentValidation;
 
 namespace WebApi.Controllers;
@@ -15,20 +16,99 @@ public class LecturersController : ControllerBase
 {
     private readonly ILecturerRepository _lecturerRepo;
     private readonly ILecturerService _lecturerService;
+    private readonly IStudentRepository _studentRepository;
+    private readonly ICourseRepository _courseRepository;
+    private readonly IGradeRepository _gradeRepository;
     private readonly IValidator<LecturerGradeUpdateDto> _gradeValidator;
 
     public LecturersController(
         ILecturerRepository repo,
         ILecturerService lecturerService,
+        IStudentRepository studentRepository,
+        ICourseRepository courseRepository,
+        IGradeRepository gradeRepository,
         IValidator<LecturerGradeUpdateDto> gradeValidator)
     {
         _lecturerRepo = repo;
         _lecturerService = lecturerService;
+        _studentRepository = studentRepository;
+        _courseRepository = courseRepository;
+        _gradeRepository = gradeRepository;
         _gradeValidator = gradeValidator;
+    }
+
+    [HttpGet("all/students")]
+    [Authorize(Roles = "Administrator,Lecturer,DeanOffice")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetAllStudents(int page = 1, int size = 50)
+    {
+        var result = await _studentRepository.FindPagedAsync(page, size);
+        var items = result.Items.Select(s => new LecturerStudentDto
+        {
+            Id = s.Id,
+            StudentId = s.StudentId,
+            FirstName = s.FirstName,
+            LastName = s.LastName,
+            Email = s.Email.ToString(),
+            Pesel = s.Pesel?.ToString() ?? "N/A",
+            YearOfStudy = s.YearOfStudy,
+            ProgramName = s.ProgramName
+        }).ToList();
+
+        return Ok(new CoreApp.Repositories.PagedResult<LecturerStudentDto>(items, result.TotalCount, result.Page, result.PageSize));
+    }
+
+    [HttpGet("all/courses")]
+    [Authorize(Roles = "Administrator,Lecturer,DeanOffice")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetAllCourses(int page = 1, int size = 50)
+    {
+        var result = await _courseRepository.FindPagedAsync(page, size);
+        var items = result.Items.Select(c => new LecturerCourseDto
+        {
+            Id = c.Id,
+            Code = c.Code,
+            Name = c.Name,
+            EctsCredits = c.EctsCredits,
+            CompletionType = c.CompletionType.ToString(),
+            EnrolledStudentsCount = c.Enrollments?.Count ?? 0
+        }).ToList();
+
+        return Ok(new CoreApp.Repositories.PagedResult<LecturerCourseDto>(items, result.TotalCount, result.Page, result.PageSize));
+    }
+
+    [HttpGet("all/grades")]
+    [Authorize(Roles = "Administrator,Lecturer,DeanOffice")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetAllGrades(int page = 1, int size = 50)
+    {
+        var result = await _gradeRepository.FindPagedAsync(page, size);
+        var items = result.Items.Select(g => new GradeWithHistoryDto
+        {
+            Id = g.Id,
+            Value = (double)g.GradeValue,
+            Type = g.GradeType.ToString(),
+            Date = g.Date,
+            LecturerName = g.Lecturer != null ? $"{g.Lecturer.FirstName} {g.Lecturer.LastName}" : null,
+            CreatedBy = g.CreatedBy,
+            CreatedAt = g.CreatedAt,
+            ModifiedBy = g.ModifiedBy,
+            ModifiedAt = g.ModifiedAt,
+            ChangeHistory = (g.ChangeHistory ?? new List<GradeChangeHistory>()).Select(h => new GradeChangeHistoryDto
+            {
+                Id = h.Id,
+                PreviousValue = h.PreviousValue != null ? (double)h.PreviousValue : null,
+                NewValue = (double)h.NewValue,
+                ChangedBy = h.ChangedBy,
+                ChangedAt = h.ChangedAt
+            }).ToList()
+        }).ToList();
+
+        return Ok(new CoreApp.Repositories.PagedResult<GradeWithHistoryDto>(items, result.TotalCount, result.Page, result.PageSize));
     }
     
     [HttpGet]
-    [Authorize(Policy = nameof(AppPolicies.Administrator))]
+    [Authorize(Roles = "Administrator,Lecturer,DeanOffice")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
@@ -39,7 +119,7 @@ public class LecturersController : ControllerBase
             id = l.Id,
             firstName = l.FirstName,
             lastName = l.LastName,
-            email = l.Email,
+            email = l.Email.ToString(),
             title = l.Title,
             faculty = l.Faculty,
             pesel = l.Pesel != null ? l.Pesel.ToString() : "N/A"
@@ -209,7 +289,7 @@ public class LecturersController : ControllerBase
 
         var currentLecturer = (await _lecturerRepo.FindAllAsync())
             .FirstOrDefault(l =>
-                (email != null && string.Equals(l.Email, email, StringComparison.OrdinalIgnoreCase)) ||
+                (email != null && string.Equals(l.Email.ToString(), email, StringComparison.OrdinalIgnoreCase)) ||
                 (firstName != null && lastName != null &&
                  string.Equals(l.FirstName, firstName, StringComparison.OrdinalIgnoreCase) &&
                  string.Equals(l.LastName, lastName, StringComparison.OrdinalIgnoreCase)));

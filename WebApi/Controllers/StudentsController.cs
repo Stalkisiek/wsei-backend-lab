@@ -19,7 +19,7 @@ public class StudentsController : ControllerBase
     }
 
     [HttpGet]
-    [Authorize(Policy = nameof(AppPolicies.Administrator))]
+    [Authorize(Roles = "Administrator,Lecturer,DeanOffice")]
     public async Task<IActionResult> GetAllStudents(int page = 1, int size = 10)
     {
         var result = await _service.FindAllStudentsPagedAsync(page, size);

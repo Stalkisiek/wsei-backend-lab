@@ -32,5 +32,15 @@ public class EfCourseRepository : EfGenericRepository<Course>, ICourseRepository
     {
         return await _set.AsNoTracking().FirstOrDefaultAsync(c => c.Code == code);
     }
+
+    public async Task<Course?> FindDetailedByIdAsync(Guid id)
+    {
+        return await _set
+            .Include(c => c.Enrollments)
+            .Include(c => c.Lecturer)
+            .Include(c => c.DegreeProgram)
+            .Include(c => c.AcademicYear)
+            .FirstOrDefaultAsync(c => c.Id == id);
+    }
 }
 

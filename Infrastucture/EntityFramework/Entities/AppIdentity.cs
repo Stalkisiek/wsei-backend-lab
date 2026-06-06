@@ -21,12 +21,12 @@ public class AppUser : IdentityUser, ISystemUser
     public required string FirstName { get; set; }
     public required string LastName { get; set; }
     public required string FullName { get; set; }
-    public required string Email { get; set; }
     public required string Department { get; set; }
     public required SystemUserStatus Status { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime? LastLoginAt { get; private set; }
     public DateTime? DeactivatedAt { get; private set; }
+    string ISystemUser.Email => Email ?? string.Empty;
 
     public void Activate()
     {

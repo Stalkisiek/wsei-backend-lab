@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,6 +31,7 @@ public class DatabaseSeeder : IDataSeeder
         var cancellationToken = CancellationToken.None;
 
         await _context.Database.EnsureCreatedAsync(cancellationToken);
+        await EnsureSchemaCompatibilityAsync(cancellationToken);
         await SeedAuthUsersAsync(cancellationToken);
 
         var academicYear = await _context.AcademicYears.FirstOrDefaultAsync(cancellationToken);
@@ -78,7 +80,7 @@ public class DatabaseSeeder : IDataSeeder
                  FirstName = "Jan",
                  LastName = "Kowal",
                  Pesel = null,
-                 Email = "jan.kowal@wsei.edu.pl",
+                 Email = EmailAddress.From("jan.kowal@wsei.edu.pl"),
                  Title = "Dr",
                  Faculty = "Wydział Informatyki",
                  TaughtCorses = new List<Course>()
@@ -90,7 +92,7 @@ public class DatabaseSeeder : IDataSeeder
                  FirstName = "Anna",
                  LastName = "Nowak",
                  Pesel = null,
-                 Email = "anna.nowak@wsei.edu.pl",
+                 Email = EmailAddress.From("anna.nowak@wsei.edu.pl"),
                  Title = "Prof",
                  Faculty = "Wydział Matematyki",
                  TaughtCorses = new List<Course>()
@@ -149,7 +151,7 @@ public class DatabaseSeeder : IDataSeeder
                  FirstName = "Piotr",
                  LastName = "Zieliński",
                  Pesel = null,
-                 Email = "piotr.zielinski@wsei.edu.pl",
+                 Email = EmailAddress.From("piotr.zielinski@wsei.edu.pl"),
                  YearOfStudy = 1,
                  EnrollmentYear = "2025/2026",
                  AcademicYear = academicYear,
@@ -166,7 +168,7 @@ public class DatabaseSeeder : IDataSeeder
                  FirstName = "Alicja",
                  LastName = "Maj",
                  Pesel = null,
-                 Email = "alicja.maj@wsei.edu.pl",
+                 Email = EmailAddress.From("alicja.maj@wsei.edu.pl"),
                  YearOfStudy = 2,
                  EnrollmentYear = "2024/2025",
                  AcademicYear = academicYear,
@@ -376,9 +378,9 @@ public class DatabaseSeeder : IDataSeeder
                     Email = "deanoffice1@example.local",
                     NormalizedEmail = "DEANOFFICE1@EXAMPLE.LOCAL",
                     EmailConfirmed = true,
-                    FirstName = "Anna",
-                    LastName = "Nowak",
-                    FullName = "Anna Nowak",
+                    FirstName = "Magda",
+                    LastName = "Dziekan",
+                    FullName = "Magda Dziekan",
                     Department = "Dean Office",
                     Status = SystemUserStatus.Active,
                     CreatedAt = DateTime.UtcNow
@@ -407,6 +409,18 @@ public class DatabaseSeeder : IDataSeeder
                 _context.Users.Update(existing);
             }
 
+            existing.UserName = seed.User.UserName;
+            existing.NormalizedUserName = seed.User.NormalizedUserName;
+            existing.Email = seed.User.Email;
+            existing.NormalizedEmail = seed.User.NormalizedEmail;
+            existing.FirstName = seed.User.FirstName;
+            existing.LastName = seed.User.LastName;
+            existing.FullName = seed.User.FullName;
+            existing.Department = seed.User.Department;
+            existing.Status = seed.User.Status;
+            existing.EmailConfirmed = seed.User.EmailConfirmed;
+            _context.Users.Update(existing);
+
             foreach (var roleId in seed.RoleIds)
             {
                 var roleAssigned = await _context.Set<IdentityUserRole<string>>()
@@ -423,6 +437,40 @@ public class DatabaseSeeder : IDataSeeder
         }
 
         await _context.SaveChangesAsync(cancellationToken);
+    }
+
+    private async Task EnsureSchemaCompatibilityAsync(CancellationToken cancellationToken)
+    {
+        if (!_context.Database.IsSqlite())
+            return;
+
+        var connection = _context.Database.GetDbConnection();
+        if (connection.State != ConnectionState.Open)
+            await connection.OpenAsync(cancellationToken);
+
+        await using var command = connection.CreateCommand();
+        command.CommandText = "PRAGMA table_info('Courses')";
+
+        var hasSemester = false;
+        await using (var reader = await command.ExecuteReaderAsync(cancellationToken))
+        {
+            while (await reader.ReadAsync(cancellationToken))
+            {
+                var columnName = reader["name"]?.ToString();
+                if (string.Equals(columnName, "Semester", StringComparison.OrdinalIgnoreCase))
+                {
+                    hasSemester = true;
+                    break;
+                }
+            }
+        }
+
+        if (!hasSemester)
+        {
+            await _context.Database.ExecuteSqlRawAsync(
+                "ALTER TABLE Courses ADD COLUMN Semester INTEGER NOT NULL DEFAULT 0",
+                cancellationToken);
+        }
     }
 }
 

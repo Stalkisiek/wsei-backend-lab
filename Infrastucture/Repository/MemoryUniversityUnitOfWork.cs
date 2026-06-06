@@ -11,13 +11,15 @@ public class MemoryUniversityUnitOfWork : IUniversityUnitOfWork
     private readonly IGradeRepository _grades;
     private readonly ICourseRepository _courses;
     private readonly IAcademicYearRepository _academicYears;
+    private readonly IDegreeProgramRepository _degreePrograms;
 
     public MemoryUniversityUnitOfWork(
         IStudentRepository students,
         ILecturerRepository lecturers,
         IGradeRepository grades,
         ICourseRepository courses,
-        IAcademicYearRepository academicYears
+        IAcademicYearRepository academicYears,
+        IDegreeProgramRepository degreePrograms
     )
     {
         _students = students;
@@ -25,6 +27,7 @@ public class MemoryUniversityUnitOfWork : IUniversityUnitOfWork
         _grades = grades;
         _courses = courses;
         _academicYears = academicYears;
+        _degreePrograms = degreePrograms;
     }
 
     public ValueTask DisposeAsync()
@@ -37,6 +40,7 @@ public class MemoryUniversityUnitOfWork : IUniversityUnitOfWork
     public IGradeRepository Grades => _grades;
     public ICourseRepository Courses => _courses;
     public IAcademicYearRepository AcademicYears => _academicYears;
+    public IDegreeProgramRepository DegreePrograms => _degreePrograms;
 
     public Task<int> SaveChangesAsync()
     {

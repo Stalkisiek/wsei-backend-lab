@@ -62,5 +62,10 @@ public class MemoryCourseRepository : MemoryGenericRepository<Course>, ICourseRe
         var result = _data.Values.FirstOrDefault(c => string.Equals(c.Code, code, StringComparison.OrdinalIgnoreCase));
         return Task.FromResult<Course?>(result);
     }
+
+    public Task<Course?> FindDetailedByIdAsync(Guid id)
+    {
+        return Task.FromResult(_data.TryGetValue(id, out var value) ? value : null);
+    }
 }
 

@@ -16,5 +16,11 @@ public interface ILecturerService
     Task<GradeWithHistoryDto> UpdateGradeAsync(Guid lecturerId, Guid gradeId, LecturerGradeUpdateDto dto, string changedBy);
     
     Task<LecturerDetailDto?> GetLecturerProfileAsync(Guid lecturerId);
+
+    Task<LecturerDetailDto> CreateLecturerAsync(LecturerCreateDto dto);
+
+    Task<LecturerDetailDto> UpdateLecturerAsync(Guid id, LecturerUpdateDto dto);
+
+    Task<LecturerDetailDto?> GetLecturerByIdAsync(Guid id);
 }
 

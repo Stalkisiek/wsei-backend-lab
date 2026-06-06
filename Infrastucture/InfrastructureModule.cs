@@ -46,17 +46,21 @@ public static class InfrastructureModule
         services.AddScoped<IGradeRepository, EfGradeRepository>();
         services.AddScoped<ICourseRepository, EfCourseRepository>();
         services.AddScoped<IAcademicYearRepository, EfAcademicYearRepository>();
+        services.AddScoped<IDegreeProgramRepository, EfDegreeProgramRepository>();
 
         services.AddScoped<EfStudentRepository>();
         services.AddScoped<EfLecturerRepository>();
         services.AddScoped<EfGradeRepository>();
         services.AddScoped<EfCourseRepository>();
         services.AddScoped<EfAcademicYearRepository>();
+        services.AddScoped<EfDegreeProgramRepository>();
 
         services.AddScoped<IUniversityUnitOfWork, EfUniversityUnitOfWork>();
 
         services.AddScoped<CoreApp.Services.IStudentService, CoreApp.Services.StudentService>();
         services.AddScoped<CoreApp.Services.ILecturerService, CoreApp.Services.LecturerService>();
+        services.AddScoped<CoreApp.Services.IDegreeProgramService, CoreApp.Services.DegreeProgramService>();
+        services.AddScoped<CoreApp.Services.ICourseManagementService, CoreApp.Services.CourseManagementService>();
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IDataSeeder, DatabaseSeeder>();
 
@@ -133,6 +137,7 @@ public static class InfrastructureModule
         services.AddScoped<CoreApp.Repositories.IGradeRepository, Infrastucture.Memory.MemoryGradeRepository>();
         services.AddScoped<CoreApp.Repositories.ICourseRepository, Infrastucture.Memory.MemoryCourseRepository>();
         services.AddScoped<CoreApp.Repositories.IAcademicYearRepository, Infrastucture.Memory.MemoryAcademicYearRepository>();
+        services.AddScoped<CoreApp.Repositories.IDegreeProgramRepository, Infrastucture.Memory.MemoryDegreeProgramRepository>();
 
         services.AddScoped<CoreApp.Repositories.IUniversityUnitOfWork, Infrastucture.Repository.MemoryUniversityUnitOfWork>(sp =>
         {
@@ -141,10 +146,13 @@ public static class InfrastructureModule
             var grades = sp.GetRequiredService<CoreApp.Repositories.IGradeRepository>();
             var courses = sp.GetRequiredService<CoreApp.Repositories.ICourseRepository>();
             var years = sp.GetRequiredService<CoreApp.Repositories.IAcademicYearRepository>();
-            return new Infrastucture.Repository.MemoryUniversityUnitOfWork(students, lecturers, grades, courses, years);
+            var programs = sp.GetRequiredService<CoreApp.Repositories.IDegreeProgramRepository>();
+            return new Infrastucture.Repository.MemoryUniversityUnitOfWork(students, lecturers, grades, courses, years, programs);
         });
 
         services.AddScoped<CoreApp.Services.IStudentService, CoreApp.Services.StudentService>();
+        services.AddScoped<CoreApp.Services.IDegreeProgramService, CoreApp.Services.DegreeProgramService>();
+        services.AddScoped<CoreApp.Services.ICourseManagementService, CoreApp.Services.CourseManagementService>();
 
         return services;
     }

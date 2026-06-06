@@ -261,7 +261,7 @@ Seeder zawiera:
 - Piotr Zieliński (1 rok) - PESEL: 01010122349
 - Alicja Maj (2 rok) - PESEL: 02020252348
 
-### Testowanie
+### Testy
 
 #### Unit testy pod zadanie 11
 
@@ -280,5 +280,135 @@ Seeder zawiera:
 - Identyfikacja użytkownika dokonującego zmian
 - Chronologiczne porządkowanie zmian
 - Obsługa casos dla nowych ocen (PreviousValue = null)
+
+#### Zadanie 12
+
+Rozbudowa aplikacji o API dla pracownika dziekanatu. Nowe endpointy umożliwiają:
+
+1. **Rejestracja i Zarządzanie Studentami**
+   - Nowa rejestracja studenta w systemie
+   - Aktualizacja danych osobowych studenta (imię, nazwisko, email)
+   - Zmiana statusu studenta (Active, OnLeave, Expelled, Graduate)
+   - Przypisanie studenta do kierunku studiów i roku akademickiego
+   - Przeglądanie szczegółów studenta
+
+2. **Rejestracja i Zarządzanie Prowadzącymi**
+   - Rejestracja nowego prowadzącego w systemie
+   - Aktualizacja danych prowadzącego (tytuł, wydział, email)
+   - Przeglądanie listy kurów prowadzonych przez prowadzącego
+
+### Endpointy API - Dziekanat
+
+#### Studenci
+
+```http
+POST /api/dean-office/students
+PUT /api/dean-office/students/{id}
+PUT /api/dean-office/students/{id}/status
+GET /api/dean-office/students/{id}
+```
+
+#### Prowadzący
+
+```http
+POST /api/dean-office/lecturers
+PUT /api/dean-office/lecturers/{id}
+GET /api/dean-office/lecturers/{id}
+GET /api/dean-office/lecturers/{id}/courses
+```
+
+Wszystkie endpointy wymagają autoryzacji z rolą `DeanOffice`.
+
+### Testy
+
+**DeanOfficeApiTests.cs** - Testy DTO i schematów dla API dziekanatu:
+- Walidacja DTO aktualizacji studenta (program, rok studiów, status)
+- Weryfikacja DTO dla rejestracji i aktualizacji prowadzącego
+- Sprawdzenie kompletności danych w DTO szczegółów studenta i prowadzącego
+
+#### Zadanie 14
+
+Dodano obsługę kierunków studiów i raportowania:
+
+- Dodawanie nowego kierunku z typem (`Bachelor`, `Engineering`, `Master`, `Doctoral`), wydziałem, czasem trwania i wymaganym ECTS
+- Raport kierunku z liczbą studentów aktywnych i absolwentów
+
+Nowe endpointy dziekanatu:
+
+```http
+POST /api/dean-office/degree-programs
+GET /api/dean-office/degree-programs
+GET /api/dean-office/degree-programs/{id}/report
+```
+
+Wprowadzono `EmailAddress` jako Value Object i zastosowano go w encjach domenowych z adresem email (`Student`, `Lecturer` przez bazową encję `Person`).
+
+### Testy
+
+- `EmailAddressTests.cs` - walidacja, parsowanie i odczyt domeny/użytkownika
+- `DegreeProgramServiceTests.cs` - tworzenie kierunku i raport aktywni/absolwenci
+
+#### Zadanie 15
+
+Dodano API administratora do zarządzania użytkownikami, rolami i uprawnieniami:
+
+```http
+GET    /api/admin/users
+GET    /api/admin/users/{id}
+POST   /api/admin/users
+PUT    /api/admin/users/{id}/status
+POST   /api/admin/users/{id}/block
+POST   /api/admin/users/{id}/deactivate
+POST   /api/admin/users/{id}/transfer
+POST   /api/admin/users/{id}/roles
+DELETE /api/admin/users/{id}/roles/{role}
+POST   /api/admin/users/{id}/permissions
+DELETE /api/admin/users/{id}/permissions/{permission}
+GET    /api/admin/users/roles
+```
+
+Zmiana uprawnień wykładowcy:
+
+- wykładowca może odczytywać dowolne listy studentów i kursów
+- wykładowca może odczytywać oceny także poza własnymi kursami
+- dodawanie i edycja ocen nadal jest ograniczona do kursów, które prowadzi
+
+Dodatkowe endpointy dla wykładowców:
+
+```http
+GET /api/lecturers/all/students
+GET /api/lecturers/all/courses
+GET /api/lecturers/all/grades
+```
+
+### Testy
+
+- `LecturerAccessRulesTests.cs` - odczyt studentów i ocen bez przypisania prowadzącego
+- `LecturerAccessRulesTests.cs` - blokada dodawania oceny dla kursu nieprzypisanego do wykładowcy
+
+#### Zadanie 16
+
+Dodano API pracownika dziekanatu do zarządzania kursem:
+
+```http
+POST   /api/dean-office/courses
+PUT    /api/dean-office/courses/{id}/lecturer/{lecturerId}
+PUT    /api/dean-office/courses/{id}/students/{studentId}
+DELETE /api/dean-office/courses/{id}/students/{studentId}
+GET    /api/dean-office/courses/{id}/report
+```
+
+Zakres funkcjonalny:
+
+- dodanie kursu z przypisaniem do kierunku, semestru i roku akademickiego
+- przypisanie prowadzącego do kursu
+- zapis i wypis studenta z kursu
+- raport kursu ze statystyką zdawalności
+
+### Testy
+
+- `CourseManagementServiceTests.cs` - tworzenie kursu, przypisanie prowadzącego, zapisy/wypisy studentów
+- `CourseManagementServiceTests.cs` - raport kursu i statystyka zdawalności
+
 
 

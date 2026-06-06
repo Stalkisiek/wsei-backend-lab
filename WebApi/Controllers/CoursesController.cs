@@ -21,7 +21,7 @@ public class CoursesController : ControllerBase
     }
 
     [HttpGet]
-    [Authorize(Policy = nameof(AppPolicies.Administrator))]
+    [Authorize(Roles = "Administrator,Lecturer,DeanOffice")]
     public async Task<IActionResult> GetAll()
     {
         var items = await _repo.FindAllAsync();

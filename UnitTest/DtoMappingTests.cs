@@ -25,7 +25,7 @@ public class DtoMappingTests
             StudentId = "ALB-2025-1234",
             FirstName = "Jan",
             LastName = "Kowalski",
-            Email = "jan.k@example.com",
+            Email = EmailAddress.From("jan.k@example.com"),
             ProgramName = "Informatyka",
             YearOfStudy = 3,
             EnrollmentYear = "2020",
@@ -36,7 +36,7 @@ public class DtoMappingTests
         Assert.Equal(student.StudentId, summary.StudentId);
         Assert.Equal(student.FirstName, summary.FirstName);
         Assert.Equal(student.LastName, summary.LastName);
-        Assert.Equal(student.Email, summary.Email);
+        Assert.Equal(student.Email.ToString(), summary.Email);
         Assert.Equal(student.ProgramName, summary.ProgramName);
         Assert.Equal(student.YearOfStudy, summary.YearOfStudy);
         Assert.Equal(student.Status, summary.Status);
@@ -82,7 +82,7 @@ public class DtoMappingTests
             Title = "Prof.",
             FirstName = "Adam",
             LastName = "Smith",
-            Email = "adam.smith@example.com",
+            Email = EmailAddress.From("adam.smith@example.com"),
             Faculty = "Wydzial Informatyki"
         };
 
@@ -95,7 +95,7 @@ public class DtoMappingTests
         Assert.Equal(lecturer.Faculty, detail.Faculty);
         Assert.Equal(lecturer.FirstName, detail.FirstName);
         Assert.Equal(lecturer.LastName, detail.LastName);
-        Assert.Equal(lecturer.Email, detail.Email);
+        Assert.Equal(lecturer.Email.ToString(), detail.Email);
     }
 
     [Fact]

@@ -96,14 +96,20 @@ public class AuthService : IAuthService
         var roles = await _userManager.GetRolesAsync(user);
         var accessToken = GenerateAccessToken(user, roles);
         var refreshToken = await GenerateRefreshTokenAsync(user.Id);
-        var lecturers = await _context.Lecturers
-            .AsNoTracking()
-            .ToListAsync();
+        var isLecturer = roles.Any(r => string.Equals(r, "Lecturer", StringComparison.OrdinalIgnoreCase));
+        Lecturer? lecturer = null;
 
-        var lecturer = lecturers.FirstOrDefault(l =>
-            string.Equals(l.Email, user.Email, StringComparison.OrdinalIgnoreCase) ||
-            (string.Equals(l.FirstName, user.FirstName, StringComparison.OrdinalIgnoreCase) &&
-             string.Equals(l.LastName, user.LastName, StringComparison.OrdinalIgnoreCase)));
+        if (isLecturer)
+        {
+            var lecturers = await _context.Lecturers
+                .AsNoTracking()
+                .ToListAsync();
+
+            lecturer = lecturers.FirstOrDefault(l =>
+                string.Equals(l.Email.ToString(), user.Email, StringComparison.OrdinalIgnoreCase) ||
+                (string.Equals(l.FirstName, user.FirstName, StringComparison.OrdinalIgnoreCase) &&
+                 string.Equals(l.LastName, user.LastName, StringComparison.OrdinalIgnoreCase)));
+        }
 
         return new AuthResponseDto
         {

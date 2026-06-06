@@ -44,14 +44,10 @@ public class LecturerService : ILecturerService
 
     public async Task<IEnumerable<LecturerStudentDto>> GetStudentsByCourseAsync(Guid lecturerId, Guid courseId)
     {
-        var courses = await _unitOfWork.Lecturers.GetCoursesByLecturerAsync(lecturerId);
-        var course = courses.FirstOrDefault(c => c.Id == courseId);
-        
-        if (course == null)
-            throw new InvalidOperationException($"Lecturer {lecturerId} does not teach course {courseId}");
+        var students = await _unitOfWork.Lecturers.GetStudentsByCourseAsync(lecturerId, courseId);
 
         var result = new List<LecturerStudentDto>();
-        foreach (var student in course.Enrollments ?? new List<Student>())
+        foreach (var student in students)
         {
             result.Add(new LecturerStudentDto
             {
@@ -59,7 +55,7 @@ public class LecturerService : ILecturerService
                 StudentId = student.StudentId,
                 FirstName = student.FirstName,
                 LastName = student.LastName,
-                Email = student.Email,
+                Email = student.Email.ToString(),
                 Pesel = student.Pesel?.ToString() ?? "N/A",
                 YearOfStudy = student.YearOfStudy,
                 ProgramName = student.ProgramName
@@ -71,9 +67,6 @@ public class LecturerService : ILecturerService
 
     public async Task<IEnumerable<GradeWithHistoryDto>> GetStudentGradesAsync(Guid lecturerId, Guid studentId, Guid courseId)
     {
-        var teaches = await _unitOfWork.Lecturers.TeachesCourseAsync(lecturerId, courseId);
-        if (!teaches)
-            throw new UnauthorizedAccessException($"Lecturer {lecturerId} does not teach course {courseId}");
 
         var grades = await _unitOfWork.Grades.FindByStudentAndCourseAsync(studentId, courseId);
         
@@ -186,7 +179,50 @@ public class LecturerService : ILecturerService
             Id = lecturer.Id,
             FirstName = lecturer.FirstName,
             LastName = lecturer.LastName,
-            Email = lecturer.Email,
+            Email = lecturer.Email.ToString(),
+            Title = lecturer.Title,
+            Faculty = lecturer.Faculty,
+            Pesel = lecturer.Pesel?.ToString() ?? "N/A",
+            TaughtCoursesCount = courses.Count()
+        };
+    }
+
+    public async Task<LecturerDetailDto> CreateLecturerAsync(LecturerCreateDto dto)
+    {
+        var entity = _mapper.Map<Lecturer>(dto);
+        if (entity.Id == Guid.Empty) entity.Id = Guid.NewGuid();
+        
+        var added = await _unitOfWork.Lecturers.AddAsync(entity);
+        await _unitOfWork.SaveChangesAsync();
+        
+        return await GetLecturerByIdAsync(added.Id) ?? throw new InvalidOperationException("Failed to retrieve created lecturer");
+    }
+
+    public async Task<LecturerDetailDto> UpdateLecturerAsync(Guid id, LecturerUpdateDto dto)
+    {
+        var existing = await _unitOfWork.Lecturers.FindByIdAsync(id);
+        if (existing == null) throw new KeyNotFoundException($"Lecturer with id {id} not found");
+        
+        _mapper.Map(dto, existing);
+        await _unitOfWork.Lecturers.UpdateAsync(existing);
+        await _unitOfWork.SaveChangesAsync();
+        
+        return await GetLecturerByIdAsync(id) ?? throw new InvalidOperationException("Failed to retrieve updated lecturer");
+    }
+
+    public async Task<LecturerDetailDto?> GetLecturerByIdAsync(Guid id)
+    {
+        var lecturer = await _unitOfWork.Lecturers.FindByIdAsync(id);
+        if (lecturer == null) return null;
+        
+        var courses = await _unitOfWork.Lecturers.GetCoursesByLecturerAsync(id);
+        
+        return new LecturerDetailDto
+        {
+            Id = lecturer.Id,
+            FirstName = lecturer.FirstName,
+            LastName = lecturer.LastName,
+            Email = lecturer.Email.ToString(),
             Title = lecturer.Title,
             Faculty = lecturer.Faculty,
             Pesel = lecturer.Pesel?.ToString() ?? "N/A",

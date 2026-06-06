@@ -11,4 +11,5 @@ public interface ICourseRepository : IGenericRepositoryAsync<Course>
     Task<IEnumerable<Course>> FindByAcademicYearAsync(Guid academicYearId);
     Task<IEnumerable<Course>> FindByLecturerAsync(Guid lecturerId);
     Task<Course?> FindByCodeAsync(string code);
+    Task<Course?> FindDetailedByIdAsync(Guid id);
 }

@@ -16,27 +16,34 @@
   <component name="ChangeListManager">
     <list default="true" id="201b6396-1749-4ce5-87de-a051f5bfe934" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.wsei-backend-lab/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.wsei-backend-lab/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CoreApp/Dto/LecturerDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CoreApp/Dto/LecturerDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CoreApp/Mapper/StudentsMappingProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CoreApp/Mapper/StudentsMappingProfile.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CoreApp/Models/Course.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CoreApp/Models/Course.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CoreApp/Models/Grade.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CoreApp/Models/Grade.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CoreApp/Models/GradeExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CoreApp/Models/GradeExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CoreApp/Models/ISystemUser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CoreApp/Models/ISystemUser.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CoreApp/Models/Person.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CoreApp/Models/Person.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CoreApp/Repositories/IGradeRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CoreApp/Repositories/IGradeRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CoreApp/Repositories/ILecturerRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CoreApp/Repositories/ILecturerRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CoreApp/Repositories/ICourseRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CoreApp/Repositories/ICourseRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CoreApp/Repositories/IUniversityUnitOfWork.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CoreApp/Repositories/IUniversityUnitOfWork.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CoreApp/Services/ILecturerService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CoreApp/Services/ILecturerService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CoreApp/Services/LecturerService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CoreApp/Services/LecturerService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Infrastucture/EntityFramework/Context/AppDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastucture/EntityFramework/Context/AppDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastucture/EntityFramework/Repositories/EfGradeRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastucture/EntityFramework/Repositories/EfGradeRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastucture/EntityFramework/Context/DatabaseSeeder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastucture/EntityFramework/Context/DatabaseSeeder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastucture/EntityFramework/Entities/AppIdentity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastucture/EntityFramework/Entities/AppIdentity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastucture/EntityFramework/Repositories/EfCourseRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastucture/EntityFramework/Repositories/EfCourseRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Infrastucture/EntityFramework/Repositories/EfLecturerRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastucture/EntityFramework/Repositories/EfLecturerRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastucture/EntityFramework/UnitOfWork/EfUniversityUnitOfWork.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastucture/EntityFramework/UnitOfWork/EfUniversityUnitOfWork.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Infrastucture/InfrastructureModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastucture/InfrastructureModule.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastucture/Infrastucture.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastucture/Infrastucture.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastucture/Memory/MemoryGradeRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastucture/Memory/MemoryGradeRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastucture/Memory/MemoryCourseRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastucture/Memory/MemoryCourseRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Infrastucture/Memory/MemoryLecturerRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastucture/Memory/MemoryLecturerRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastucture/Memory/MemoryStudentRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastucture/Memory/MemoryStudentRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastucture/Repository/MappingProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastucture/Repository/MappingProfile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastucture/Repository/MemoryUniversityUnitOfWork.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastucture/Repository/MemoryUniversityUnitOfWork.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastucture/Security/AuthService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastucture/Security/AuthService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UnitTest/DtoMappingTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UnitTest/DtoMappingTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UnitTest/UnitTest1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UnitTest/UnitTest1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApi/Controllers/AuthController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApi/Controllers/AuthController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApi/Controllers/CoursesController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApi/Controllers/CoursesController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApi/Controllers/LecturersController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApi/Controllers/LecturersController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApi/Controllers/StudentsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApi/Controllers/StudentsController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApi/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApi/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebApi/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApi/app.db" beforeDir="false" afterPath="$PROJECT_DIR$/WebApi/app.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,11 +78,16 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/1622b8f95d27187bc1fb39bac49bd64e928773df4fda6fcf6271680be54a2/UserManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Authorization/AppPolicies.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CoreApp/Dto/AdminUserManagementDto.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Dto/AuthDto.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CoreApp/Dto/CourseManagementDto.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CoreApp/Dto/DegreeProgramDto.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Dto/LecturerDto.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Dto/PersonDto.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Dto/StudentDto.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CoreApp/Dto/UpdateStatusDto.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Exceptions/LecturerNotFoundException.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Mapper/StudentsMappingProfile.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Models/AcademicYear.cs" root0="FORCE_HIGHLIGHTING" />
@@ -83,6 +95,7 @@
     <setting file="file://$PROJECT_DIR$/CoreApp/Models/Course.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Models/DegreeProgram.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Models/DegreeType.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CoreApp/Models/EmailAddress.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Models/EntityBase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Models/Grade.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Models/GradeExtensions.cs" root0="FORCE_HIGHLIGHTING" />
@@ -98,7 +111,11 @@
     <setting file="file://$PROJECT_DIR$/CoreApp/Repositories/ICourseRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Repositories/IGenericRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Repositories/IGradeRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CoreApp/Services/CourseManagementService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CoreApp/Services/DegreeProgramService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Services/IAuthService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CoreApp/Services/ICourseManagementService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CoreApp/Services/IDegreeProgramService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Services/ILecturerService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Services/IStudentService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Services/LecturerService.cs" root0="FORCE_HIGHLIGHTING" />
@@ -107,9 +124,11 @@
     <setting file="file://$PROJECT_DIR$/CoreApp/Validators/LecturerGradeUpdateDtoValidator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoreApp/Validators/StudentCreateDtoValidator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastucture/EntityFramework/Context/DatabaseSeeder.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastucture/EntityFramework/Repositories/EfDegreeProgramRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastucture/InfrastructureModule.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastucture/Memory/InMemoryStudentRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastucture/Memory/MemoryCourseRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastucture/Memory/MemoryDegreeProgramRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastucture/Memory/MemoryGenericRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastucture/Memory/MemoryGradeRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastucture/Repository/MappingProfile.cs" root0="FORCE_HIGHLIGHTING" />
@@ -118,10 +137,17 @@
     <setting file="file://$PROJECT_DIR$/Infrastucture/Security/RefreshToken.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastucture/Seeding/IDataSeeder.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastucture/Services/MemoryStudentService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/UnitTest/CourseManagementServiceTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/UnitTest/DeanOfficeApiTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/UnitTest/DegreeProgramServiceTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/UnitTest/EmailAddressTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/UnitTest/GradeChangeHistoryTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/UnitTest/LecturerAccessRulesTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/UnitTest/PeselTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/UnitTest/UnitTest1.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/WebApi/Controllers/AdminUsersController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WebApi/Controllers/AuthController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/WebApi/Controllers/DeanOfficeController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WebApi/Controllers/StudentsController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WebApi/Middleware/ProblemDetailsExceptionHandler.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -132,23 +158,23 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0010775006640527" />
-      <entry key="MS500" value="1.4440598455613738" />
-      <entry key="S2" value="3.1141522830009833" />
-      <entry key="S5" value="4.071902034412694" />
-      <entry key="S10" value="4.499956701283864" />
-      <entry key="S30" value="4.824516778190182" />
-      <entry key="S60" value="4.911235534346268" />
-      <entry key="M2" value="4.975162104163203" />
-      <entry key="M5" value="5.38551125133359" />
-      <entry key="M10" value="6.097350501075067" />
-      <entry key="M15" value="6.643001663600123" />
-      <entry key="M30" value="9.17969326492734" />
-      <entry key="H1" value="16.214597161441446" />
-      <entry key="H2" value="25.677498561723894" />
-      <entry key="H4" value="33.62553927949613" />
-      <entry key="D1" value="42.80969122943937" />
-      <entry key="W1" value="44.67900703373549" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.0000000000000009" />
+      <entry key="S10" value="1.0000000614666664" />
+      <entry key="S30" value="1.013244692025545" />
+      <entry key="S60" value="1.3072454611186552" />
+      <entry key="M2" value="2.5300758400967918" />
+      <entry key="M5" value="5.108088744653776" />
+      <entry key="M10" value="7.2246084756895765" />
+      <entry key="M15" value="9.160137930711594" />
+      <entry key="M30" value="14.865451798577222" />
+      <entry key="H1" value="24.681785225410362" />
+      <entry key="H2" value="37.65845869399628" />
+      <entry key="H4" value="49.48296259164414" />
+      <entry key="D1" value="64.2917062800423" />
+      <entry key="W1" value="67.45238828552682" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
@@ -170,23 +196,23 @@
       <entry key="W1" value="0.0" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9340521188612457" />
-      <entry key="MS500" value="1.4249805422180155" />
-      <entry key="S2" value="3.1036109010202217" />
-      <entry key="S5" value="4.066257179605636" />
-      <entry key="S10" value="4.496807714743461" />
-      <entry key="S30" value="4.823383761970688" />
-      <entry key="S60" value="4.910657829517684" />
-      <entry key="M2" value="4.974868621306494" />
-      <entry key="M5" value="5.385379315182865" />
-      <entry key="M10" value="6.097271682983945" />
-      <entry key="M15" value="6.642942311855637" />
-      <entry key="M30" value="9.179646149873925" />
-      <entry key="H1" value="16.214548658014415" />
-      <entry key="H2" value="25.67745743348396" />
-      <entry key="H4" value="33.62551161541596" />
-      <entry key="D1" value="42.809685250230984" />
-      <entry key="W1" value="44.67900613975528" />
+      <entry key="MS100" value="0.9395227492140118" />
+      <entry key="MS500" value="0.9876008614453725" />
+      <entry key="S2" value="0.9968856972203758" />
+      <entry key="S5" value="0.9987531130852765" />
+      <entry key="S10" value="0.999376423511516" />
+      <entry key="S30" value="1.013031904738831" />
+      <entry key="S60" value="1.3069621521618193" />
+      <entry key="M2" value="2.5290882173894618" />
+      <entry key="M5" value="5.10649285260118" />
+      <entry key="M10" value="7.223319061255205" />
+      <entry key="M15" value="9.159123235010345" />
+      <entry key="M30" value="14.864841178469678" />
+      <entry key="H1" value="24.681433286633258" />
+      <entry key="H2" value="37.65825791052815" />
+      <entry key="H4" value="49.482851462707075" />
+      <entry key="D1" value="64.291685553558" />
+      <entry key="W1" value="67.45238525771236" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -288,7 +314,7 @@
       <workItem from="1776501670209" duration="1394000" />
       <workItem from="1779620349883" duration="14004000" />
       <workItem from="1780697019904" duration="186000" />
-      <workItem from="1780697243418" duration="10278000" />
+      <workItem from="1780697243418" duration="14275000" />
     </task>
     <task id="LOCAL-00001" summary="Innitial commit v3 (trying to fix random included projects)">
       <option name="closed" value="true" />
@@ -330,7 +356,15 @@
       <option name="project" value="LOCAL" />
       <updated>1780700012671</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="considering suicide rn. checkpoint, not finished yet">
+      <option name="closed" value="true" />
+      <created>1780707837394</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1780707837394</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -356,7 +390,8 @@
     <MESSAGE value="lab 4" />
     <MESSAGE value="Lab 5" />
     <MESSAGE value="Fixes for last lab (lab 6), and adition of studentId as an more humanized number, with id working as normal Id" />
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="considering suicide rn. checkpoint, not finished yet" />
+    <option name="LAST_COMMIT_MESSAGE" value="considering suicide rn. checkpoint, not finished yet" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -16,7 +16,7 @@ public class MemoryLecturerRepository : MemoryGenericRepository<Lecturer>, ILect
             Id = id1,
             FirstName = "Jan",
             LastName = "Kowal",
-            Email = "jan.kowal@wsei.edu.pl",
+            Email = EmailAddress.From("jan.kowal@wsei.edu.pl"),
             Title = "Dr",
             Faculty = "Wydział Informatyki",
             TaughtCorses = new List<Course>()
@@ -29,7 +29,7 @@ public class MemoryLecturerRepository : MemoryGenericRepository<Lecturer>, ILect
             Id = id2,
             FirstName = "Anna",
             LastName = "Nowak",
-            Email = "anna.nowak@wsei.edu.pl",
+            Email = EmailAddress.From("anna.nowak@wsei.edu.pl"),
             Title = "Prof",
             Faculty = "Wydział Matematyki",
             TaughtCorses = new List<Course>()
@@ -64,8 +64,9 @@ public class MemoryLecturerRepository : MemoryGenericRepository<Lecturer>, ILect
 
     public Task<IEnumerable<Student>> GetStudentsByCourseAsync(Guid lecturerId, Guid courseId)
     {
-        var lecturer = _data.Values.FirstOrDefault(l => l.Id == lecturerId);
-        var course = lecturer?.TaughtCorses?.FirstOrDefault(c => c.Id == courseId);
+        var course = _data.Values
+            .SelectMany(l => l.TaughtCorses ?? new List<Course>())
+            .FirstOrDefault(c => c.Id == courseId);
         var students = course?.Enrollments ?? new List<Student>();
         return Task.FromResult<IEnumerable<Student>>(students);
     }

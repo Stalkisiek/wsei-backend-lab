@@ -65,6 +65,13 @@ public class AppDbContext : IdentityDbContext<AppUser, AppRole, string>
         builder.Entity<Student>(entity =>
         {
             entity.HasKey(s => s.Id);
+            entity.Property(s => s.Email)
+                .HasConversion(
+                    e => e.ToString(),
+                    s => EmailAddress.From(s)
+                )
+                .HasMaxLength(200)
+                .IsRequired();
             entity.Property(s => s.Pesel)
                 .HasConversion(
                     p => p != null ? p.ToString() : null,
@@ -79,6 +86,13 @@ public class AppDbContext : IdentityDbContext<AppUser, AppRole, string>
             entity.HasKey(l => l.Id);
             entity.Property(l => l.Title).HasMaxLength(50);
             entity.Property(l => l.Faculty).HasMaxLength(100);
+            entity.Property(l => l.Email)
+                .HasConversion(
+                    e => e.ToString(),
+                    s => EmailAddress.From(s)
+                )
+                .HasMaxLength(200)
+                .IsRequired();
             entity.Property(l => l.Pesel)
                 .HasConversion(
                     p => p != null ? p.ToString() : null,
@@ -238,9 +252,9 @@ public class AppDbContext : IdentityDbContext<AppUser, AppRole, string>
                 Email = "deanoffice1@example.local",
                 NormalizedEmail = "DEANOFFICE1@EXAMPLE.LOCAL",
                 EmailConfirmed = true,
-                FirstName = "Anna",
-                LastName = "Nowak",
-                FullName = "Anna Nowak",
+                FirstName = "Magda",
+                LastName = "Dziekan",
+                FullName = "Magda Dziekan",
                 Department = "Dean Office",
                 Status = SystemUserStatus.Active,
                 CreatedAt = DateTime.Parse("2026-05-24T00:00:00Z"),

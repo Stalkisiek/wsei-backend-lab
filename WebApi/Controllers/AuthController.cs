@@ -71,22 +71,33 @@ public class AuthController : ControllerBase
         var email = User.FindFirstValue(ClaimTypes.Email)!;
         var firstName = User.FindFirstValue(ClaimTypes.GivenName);
         var lastName = User.FindFirstValue(ClaimTypes.Surname);
+        var roles = User.FindAll(ClaimTypes.Role).Select(c => c.Value).ToList();
+        var isLecturer = roles.Any(r => string.Equals(r, "Lecturer", StringComparison.OrdinalIgnoreCase));
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier)!;
 
-        var lecturer = (await _lecturerRepository.FindAllAsync())
-            .FirstOrDefault(l =>
-                string.Equals(l.Email, email, StringComparison.OrdinalIgnoreCase) ||
-                (firstName != null && lastName != null &&
-                 string.Equals(l.FirstName, firstName, StringComparison.OrdinalIgnoreCase) &&
-                 string.Equals(l.LastName, lastName, StringComparison.OrdinalIgnoreCase)));
+        if (isLecturer)
+        {
+            var lecturer = (await _lecturerRepository.FindAllAsync())
+                .FirstOrDefault(l =>
+                    string.Equals(l.Email.ToString(), email, StringComparison.OrdinalIgnoreCase) ||
+                    (firstName != null && lastName != null &&
+                     string.Equals(l.FirstName, firstName, StringComparison.OrdinalIgnoreCase) &&
+                     string.Equals(l.LastName, lastName, StringComparison.OrdinalIgnoreCase)));
+
+            if (lecturer != null)
+            {
+                userId = lecturer.Id.ToString();
+            }
+        }
 
         var user = new UserDto
         {
-            Id = lecturer?.Id.ToString() ?? User.FindFirstValue(ClaimTypes.NameIdentifier)!,
+            Id = userId,
             Email = email,
             FirstName = User.FindFirstValue(ClaimTypes.GivenName)!,
             LastName = User.FindFirstValue(ClaimTypes.Surname)!,
             Department = User.FindFirstValue("department")!,
-            Roles = User.FindAll(ClaimTypes.Role).Select(c => c.Value)
+            Roles = roles
         };
 
         return Ok(user);
