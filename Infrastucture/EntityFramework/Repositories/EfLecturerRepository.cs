@@ -27,5 +27,30 @@ public class EfLecturerRepository : EfGenericRepository<Lecturer>, ILecturerRepo
     {
         return await _set.Where(l => l.Faculty != null && l.Faculty.Equals(faculty, StringComparison.OrdinalIgnoreCase)).AsNoTracking().ToListAsync();
     }
+
+    public async Task<IEnumerable<Course>> GetCoursesByLecturerAsync(Guid lecturerId)
+    {
+        var lecturer = await _set
+            .Include(l => l.TaughtCorses)
+            .ThenInclude(c => c.Enrollments)
+            .FirstOrDefaultAsync(l => l.Id == lecturerId);
+
+        return lecturer?.TaughtCorses ?? new List<Course>();
+    }
+
+    public async Task<IEnumerable<Student>> GetStudentsByCourseAsync(Guid lecturerId, Guid courseId)
+    {
+        var course = await _context.Set<Course>()
+            .Include(c => c.Enrollments)
+            .FirstOrDefaultAsync(c => c.Id == courseId && c.Lecturer != null && c.Lecturer.Id == lecturerId);
+
+        return course?.Enrollments ?? new List<Student>();
+    }
+
+    public async Task<bool> TeachesCourseAsync(Guid lecturerId, Guid courseId)
+    {
+        return await _context.Set<Course>()
+            .AnyAsync(c => c.Id == courseId && c.Lecturer != null && c.Lecturer.Id == lecturerId);
+    }
 }
 

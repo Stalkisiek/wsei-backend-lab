@@ -27,6 +27,20 @@ public static class GradeExtensions
         };
     }
 
+    public static GradeValue From(double gradeValue)
+    {
+        return (int)Math.Round(gradeValue * 10) switch
+        {
+            20 => GradeValue.Grade20,
+            30 => GradeValue.Grade30,
+            35 => GradeValue.Grade35,
+            40 => GradeValue.Grade40,
+            45 => GradeValue.Grade45,
+            50 => GradeValue.Grade50,
+            _ => throw new ArgumentException($"Invalid grade value: {gradeValue}. Allowed values: 2.0, 3.0, 3.5, 4.0, 4.5, 5.0")
+        };
+    }
+
     public static List<String> GradeValues()
     {
         return Enum.GetValues<GradeValue>().Select(g => g.Value().ToString("N1")).ToList();

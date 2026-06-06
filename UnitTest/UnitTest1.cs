@@ -25,7 +25,7 @@ public class MemoryGenericRepositoryTest
             Grades = new List<Grade>(),
             FirstName = "Ivan",
             LastName = "Ivanov",
-            NationalId = "Ivanov",
+            Pesel = null,
             Email = "test@test.test"
         };
         await _repo.AddAsync(expected);
@@ -47,7 +47,7 @@ public class MemoryGenericRepositoryTest
             Grades = new List<Grade>(),
             FirstName = $"First{i}",
             LastName = $"Last{i}",
-            NationalId = $"NID{i}",
+            Pesel = null,
             Email = $"student{i}@example.com"
         }).ToList();
         foreach (var s in students) await _repo.AddAsync(s);

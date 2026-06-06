@@ -54,5 +54,26 @@ public class MemoryLecturerRepository : MemoryGenericRepository<Lecturer>, ILect
         var result = _data.Values.Where(l => string.Equals(l.Faculty, faculty, StringComparison.OrdinalIgnoreCase)).ToList();
         return Task.FromResult<IEnumerable<Lecturer>>(result);
     }
-}
 
+    public Task<IEnumerable<Course>> GetCoursesByLecturerAsync(Guid lecturerId)
+    {
+        var lecturer = _data.Values.FirstOrDefault(l => l.Id == lecturerId);
+        var courses = lecturer?.TaughtCorses ?? new List<Course>();
+        return Task.FromResult<IEnumerable<Course>>(courses);
+    }
+
+    public Task<IEnumerable<Student>> GetStudentsByCourseAsync(Guid lecturerId, Guid courseId)
+    {
+        var lecturer = _data.Values.FirstOrDefault(l => l.Id == lecturerId);
+        var course = lecturer?.TaughtCorses?.FirstOrDefault(c => c.Id == courseId);
+        var students = course?.Enrollments ?? new List<Student>();
+        return Task.FromResult<IEnumerable<Student>>(students);
+    }
+
+    public Task<bool> TeachesCourseAsync(Guid lecturerId, Guid courseId)
+    {
+        var lecturer = _data.Values.FirstOrDefault(l => l.Id == lecturerId);
+        var teaches = lecturer?.TaughtCorses?.Any(c => c.Id == courseId) ?? false;
+        return Task.FromResult(teaches);
+    }
+}

@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using CoreApp.Authorization;
 using CoreApp.Services;
 using CoreApp.Dto;
 using CoreApp.Models;
@@ -17,6 +19,7 @@ public class StudentsController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize(Policy = nameof(AppPolicies.Administrator))]
     public async Task<IActionResult> GetAllStudents(int page = 1, int size = 10)
     {
         var result = await _service.FindAllStudentsPagedAsync(page, size);
@@ -43,6 +46,7 @@ public class StudentsController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Policy = nameof(AppPolicies.Administrator))]
     public async Task<IActionResult> Create([FromBody] StudentCreateDto dto)
     {
         try
@@ -58,6 +62,7 @@ public class StudentsController : ControllerBase
     }
 
     [HttpPut("id/{id:guid}")]
+    [Authorize(Policy = nameof(AppPolicies.Administrator))]
     public async Task<IActionResult> UpdateStudentById(Guid id, [FromBody] StudentUpdateDto dto)
     {
         // sprawdź czy student istnieje
@@ -84,6 +89,7 @@ public class StudentsController : ControllerBase
     }
 
     [HttpPut("student-id/{studentId}")]
+    [Authorize(Policy = nameof(AppPolicies.Administrator))]
     public async Task<IActionResult> UpdateStudentByStudentId(string studentId, [FromBody] StudentUpdateDto dto)
     {
         var entityId = await _service.ResolveStudentEntityIdByStudentIdAsync(studentId);
@@ -93,6 +99,7 @@ public class StudentsController : ControllerBase
     }
 
     [HttpPost("id/{id:guid}/grades")]
+    [Authorize(Policy = nameof(AppPolicies.Administrator))]
     public async Task<IActionResult> AddGradeById(Guid id, [FromBody] GradeDto dto)
     {
         var existing = await _service.GetStudentById(id);
@@ -131,6 +138,7 @@ public class StudentsController : ControllerBase
     }
 
     [HttpPost("student-id/{studentId}/grades")]
+    [Authorize(Policy = nameof(AppPolicies.Administrator))]
     public async Task<IActionResult> AddGradeByStudentId(string studentId, [FromBody] GradeDto dto)
     {
         var entityId = await _service.ResolveStudentEntityIdByStudentIdAsync(studentId);
@@ -158,6 +166,7 @@ public class StudentsController : ControllerBase
     }
 
     [HttpPut("id/{id:guid}/grades/{gradeId:guid}")]
+    [Authorize(Policy = nameof(AppPolicies.Administrator))]
     public async Task<IActionResult> UpdateGradeById(Guid id, Guid gradeId, [FromBody] GradeUpdateDto dto)
     {
         var student = await _service.GetById(id);
@@ -192,6 +201,7 @@ public class StudentsController : ControllerBase
     }
 
     [HttpPut("student-id/{studentId}/grades/{gradeId:guid}")]
+    [Authorize(Policy = nameof(AppPolicies.Administrator))]
     public async Task<IActionResult> UpdateGradeByStudentId(string studentId, Guid gradeId, [FromBody] GradeUpdateDto dto)
     {
         var entityId = await _service.ResolveStudentEntityIdByStudentIdAsync(studentId);

@@ -2,6 +2,9 @@ using Infrastucture;
 using CoreApp.Module;
 using Infrastucture.EntityFramework.Context;
 using Infrastucture.Repository;
+using Infrastucture.Seeding;
+using Infrastucture.Security;
+using Microsoft.OpenApi.Models;
 using WebApi.Middleware;
 
 namespace WebApi;
@@ -13,12 +16,37 @@ public class Program
 
         // Add services to the container.
         builder.Services.AddControllers();
-        builder.Services.AddAuthorization();
 
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
         builder.Services.AddOpenApi();
         builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
+        builder.Services.AddSwaggerGen(options =>
+        {
+            options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+            {
+                Description = "Wpisz token JWT. Przykład: Bearer {token}",
+                Name = "Authorization",
+                In = ParameterLocation.Header,
+                Type = SecuritySchemeType.Http,
+                Scheme = "bearer",
+                BearerFormat = "JWT"
+            });
+
+            options.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
+                        }
+                    },
+                    Array.Empty<string>()
+                }
+            });
+        });
 
         builder.Services.AddAutoMapper(cfg =>
         {
@@ -30,24 +58,35 @@ public class Program
         // choose one of the modules below:
         // EF-backed registrations (use SQLite connection string 'AppDb' if present in configuration)
         builder.Services.AddUniversityEfModule(builder.Configuration);
+        builder.Services.AddSingleton<JwtSettings>();
+        builder.Services.AddJwt(new JwtSettings(builder.Configuration));
 
         // In-memory registrations (default for current lab)
         // builder.Services.AddUniversityMemoryModule(builder.Configuration);
 
         var app = builder.Build();
 
-        await DatabaseSeeder.SeedAsync(app.Services);
-
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
             app.MapOpenApi();
+            using var scope = app.Services.CreateScope();
+            var seeders = scope.ServiceProvider
+                .GetServices<IDataSeeder>()
+                .OrderBy(s => s.Order);
+
+            foreach (var seeder in seeders)
+            {
+                await seeder.SeedAsync();
+            }
+
             app.UseSwagger();
             app.UseSwaggerUI();
         }
 
         app.UseHttpsRedirection();
 
+        app.UseAuthentication();
         app.UseAuthorization();
 
         app.UseMiddleware<ProblemDetailsExceptionHandler>();

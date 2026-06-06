@@ -9,6 +9,6 @@ public class Course : EntityBase
 
     public AcademicYear? AcademicYear { get; set; }
     public DegreeProgram? DegreeProgram { get; set; }
-    public List<Student> Enrollments { get; set; }
-    
+    public Lecturer? Lecturer { get; set; }
+    public List<Student> Enrollments { get; set; } = new List<Student>();
 }

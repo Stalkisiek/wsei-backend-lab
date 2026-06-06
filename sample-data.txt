@@ -1,0 +1,105 @@
+Przykładowe dane seedowane przy starcie API
+
+Baza: SQLite `WebApi/app.db`
+
+1) AcademicYear
+- Id: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+- Name: 2025/2026
+- YearFrom: 2025
+- YearTo: 2026
+- IsActive: true
+
+2) DegreeProgram
+- Id: bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb
+- Code: INF-BSC
+- Name: Informatyka
+- Faculty: Wydział Informatyki
+- DegreeType: Engineering
+- DurationYears: 3
+- MinEctsForDiploma: 180
+
+3) Lecturers
+- Id: cccccccc-cccc-cccc-cccc-cccccccccccc
+  FirstName: Jan
+  LastName: Kowal
+  Pesel: null (opcjonalny)
+  Email: jan.kowal@wsei.edu.pl
+  Title: Dr
+  Faculty: Wydział Informatyki
+
+- Id: dddddddd-dddd-dddd-dddd-dddddddddddd
+  FirstName: Anna
+  LastName: Nowak
+  Pesel: null (opcjonalny)
+  Email: anna.nowak@wsei.edu.pl
+  Title: Prof
+  Faculty: Wydział Matematyki
+
+4) Courses
+- Id: eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee
+  Code: CS101
+  Name: Wprowadzenie do informatyki
+  EctsCredits: 5
+  CompletionType: Exam
+
+- Id: ffffffff-ffff-ffff-ffff-ffffffffffff
+  Code: MATH100
+  Name: Analiza matematyczna
+  EctsCredits: 6
+  CompletionType: Exam
+
+5) Students
+- Id: 11111111-2222-3333-4444-555555555555
+  StudentId: ALB-2025-0001
+  FirstName: Piotr
+  LastName: Zieliński
+  Pesel: null (opcjonalny)
+  Email: piotr.zielinski@wsei.edu.pl
+  YearOfStudy: 1
+  EnrollmentYear: 2025/2026
+  ProgramName: INF-BSC
+
+- Id: 66666666-7777-8888-9999-000000000000
+  StudentId: ALB-2024-0002
+  FirstName: Alicja
+  LastName: Maj
+  Pesel: null (opcjonalny)
+  Email: alicja.maj@wsei.edu.pl
+  YearOfStudy: 2
+  EnrollmentYear: 2024/2025
+  ProgramName: INF-BSC
+
+6) Grade
+- Id: 99999999-8888-7777-6666-555555555555
+- Student: Piotr Zieliński
+- Course: CS101
+- Lecturer: Jan Kowal
+- AcademicYear: 2025/2026
+- GradeType: Final
+- GradeValue: 4.5
+
+7) Logowanie (testowe)
+- endpoint: POST /api/auth/login
+
+- Email: admin1@example.local
+  Password: Admin@123!
+  Role: Administrator
+
+- Email: admin2@example.local
+  Password: Admin@123!
+  Role: Administrator
+
+- Email: lecturer1@example.local
+  Password: Lecturer@123!
+  Role: Lecturer
+  Opis: Wykładowca - może przeglądać studentów i zarządzać ocenami swoich kursów
+
+- Email: deanoffice1@example.local
+  Password: DeanOffice@123!
+  Role: DeanOffice
+  Opis: Pracownik dziekanatu - może zarządzać wszystkimi ocenami
+
+- Email: jan.kowalski@app.pl
+  Password: Manager@123!
+  Role: Administrator
+

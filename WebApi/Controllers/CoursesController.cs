@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using CoreApp.Repositories;
 using CoreApp.Dto;
+using CoreApp.Authorization;
 using AutoMapper;
 
 namespace WebApi.Controllers;
@@ -19,6 +21,7 @@ public class CoursesController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize(Policy = nameof(AppPolicies.Administrator))]
     public async Task<IActionResult> GetAll()
     {
         var items = await _repo.FindAllAsync();

@@ -3,10 +3,17 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.IdentityModel.Tokens;
 using Infrastucture.EntityFramework.Context;
 using Infrastucture.EntityFramework.Entities;
 using Infrastucture.EntityFramework.Repositories;
 using Infrastucture.EntityFramework.UnitOfWork;
+using Infrastucture.Seeding;
+using Infrastucture.Security;
+using CoreApp.Authorization;
+using CoreApp.Models;
 using CoreApp.Repositories;
 using CoreApp.Services;
 
@@ -49,6 +56,70 @@ public static class InfrastructureModule
         services.AddScoped<IUniversityUnitOfWork, EfUniversityUnitOfWork>();
 
         services.AddScoped<CoreApp.Services.IStudentService, CoreApp.Services.StudentService>();
+        services.AddScoped<CoreApp.Services.ILecturerService, CoreApp.Services.LecturerService>();
+        services.AddScoped<IAuthService, AuthService>();
+        services.AddScoped<IDataSeeder, DatabaseSeeder>();
+
+
+        return services;
+    }
+
+    public static IServiceCollection AddJwt(this IServiceCollection services, JwtSettings jwtOptions)
+    {
+        services
+            .AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = jwtOptions.Issuer,
+                    ValidAudience = jwtOptions.Audience,
+                    IssuerSigningKey = jwtOptions.GetSymmetricKey(),
+                    ClockSkew = TimeSpan.Zero
+                };
+            });
+
+        services.AddAuthorization(options =>
+        {
+            options.AddPolicy(AppPolicies.Administrator.Name(), policy =>
+                policy.RequireRole(UserRole.Administrator.ToString()));
+
+            options.AddPolicy(AppPolicies.AdminOnly.Name(), policy =>
+                policy.RequireRole(UserRole.Administrator.ToString()));
+
+            options.AddPolicy(AppPolicies.ActiveUser.Name(), policy =>
+                policy
+                    .RequireAuthenticatedUser()
+                    .RequireClaim("status", SystemUserStatus.Active.ToString()));
+
+            options.AddPolicy(AppPolicies.SalesDepartment.Name(), policy =>
+                policy.RequireClaim("department", "Sales"));
+
+            options.AddPolicy(AppPolicies.Lecturer.Name(), policy =>
+                policy.RequireRole(UserRole.Lecturer.ToString()));
+
+            options.AddPolicy(AppPolicies.DeanOffice.Name(), policy =>
+                policy.RequireRole(UserRole.DeanOffice.ToString()));
+
+            options.AddPolicy(AppPolicies.LecturerOrDeanOffice.Name(), policy =>
+                policy.RequireRole(UserRole.Lecturer.ToString(), UserRole.DeanOffice.ToString()));
+
+            options.DefaultPolicy = new AuthorizationPolicyBuilder()
+                .RequireAuthenticatedUser()
+                .Build();
+
+            options.FallbackPolicy = new AuthorizationPolicyBuilder()
+                .RequireAuthenticatedUser()
+                .Build();
+        });
 
         return services;
     }

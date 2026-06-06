@@ -24,6 +24,8 @@ public enum SystemUserStatus
 
 public enum UserRole
 {
-    Administrator
+    Administrator,
+    Lecturer,
+    DeanOffice
 }
 

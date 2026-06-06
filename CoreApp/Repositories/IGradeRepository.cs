@@ -10,13 +10,14 @@ public interface IGradeRepository : IGenericRepositoryAsync<Grade>
     Task<IEnumerable<Grade>> FindByCourseAsync(Guid courseId);
     Task<IEnumerable<Grade>> FindByStudentAsync(Guid studentId);
 
-    /// <summary>
-    /// Zwraca oceny z danego roku akademickiego.
-    /// </summary>
-    Task<IEnumerable<Grade>> FindByAcademicYearAsync(Guid academicYearId);
 
-    /// <summary>
-    /// Oblicza średnią ocen dla studenta (null jeśli brak ocen).
-    /// </summary>
+    Task<IEnumerable<Grade>> FindByAcademicYearAsync(Guid academicYearId);
+    
     Task<double?> GetAverageForStudentAsync(Guid studentId);
+    
+    Task<IEnumerable<Grade>> FindByStudentAndCourseAsync(Guid studentId, Guid courseId);
+    
+    Task AddGradeChangeAsync(Guid gradeId, GradeValue? previousValue, GradeValue newValue, string changedBy);
+    
+    Task<IEnumerable<GradeChangeHistory>> GetChangeHistoryAsync(Guid gradeId);
 }
